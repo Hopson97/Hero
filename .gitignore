@@ -1,0 +1,14 @@
+*.layout
+*.depend
+*.cbp
+
+
+bin/
+obj/
+
+*.dll
+*.zip
+*.7z
+
+
+Hero/
