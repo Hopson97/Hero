@@ -8,6 +8,8 @@
 #include "States/Playing_State.h"
 #include "States/Splash_Screen.h"
 
+#include "Game/Equipment/Equipment_Data.h"
+
 namespace
 {
     void calculateFPS()
@@ -32,8 +34,9 @@ namespace
 
 Application::Application()
 {
-    Display::init("Hero - V0.1");
-    Random::init();
+    Display     ::init      ("Hero - V0.1");
+    Random      ::init      ();
+    Equipment   ::initData  (m_resourceHolder);
 
     //pushState(std::make_unique<State::Splash_Screen>(*this));
     pushState(std::make_unique<State::Playing>(*this));
