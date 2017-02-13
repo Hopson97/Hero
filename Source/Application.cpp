@@ -28,7 +28,7 @@ namespace
 
             numFrames = 0;
             timer.restart();
-}
+        }
     }
 }
 
