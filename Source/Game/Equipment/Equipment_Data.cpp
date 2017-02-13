@@ -5,7 +5,7 @@
 #include <vector>
 #include <cassert>
 
-#include "../Resource_Managers/Resource_Holder.h"
+#include "../../Resource_Managers/Resource_Holder.h"
 
 namespace Equipment
 {
@@ -60,6 +60,7 @@ namespace Equipment
             case Tier::Magma:
                 return magmaData.at(tierNumber);
         }
+        return primitiveData.at(0); //To get rid of a warning that has no effect
     }
 
 
