@@ -109,4 +109,3 @@ void Player::setBodyPosition()
 
     m_shield.setPosition(m_body.getPosition().x, m_body.getPosition().y + 10);
 }
-

@@ -3,7 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Player_Armour.h"
 #include "../Animation.h"
 
 class Resource_Holder;

@@ -12,9 +12,11 @@ enum class Texture_ID
     Splash_MH,
 
     Player_Legs,
+
     Player_Body_Shirt,
     Player_Head_None,
     Player_Shield_Wood,
+    Player_Sword_Wood,
 
     Zone_Village
 };

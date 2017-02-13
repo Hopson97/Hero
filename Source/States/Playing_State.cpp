@@ -33,7 +33,6 @@ namespace State
     void Playing::draw()
     {
         m_zone.draw();
-
         m_player.draw();
     }
 
