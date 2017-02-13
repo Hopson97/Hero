@@ -10,8 +10,8 @@ namespace State
 {
     Playing::Playing(Application& application)
     :   State_Base  (application)
-    ,   m_player    (application.getResources())
-    ,   m_zone      (application.getResources())
+    ,   m_player    ()
+    ,   m_zone      ()
     {
     }
 

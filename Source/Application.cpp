@@ -36,7 +36,6 @@ Application::Application()
 {
     Display     ::init      ("Hero - V0.1");
     Random      ::init      ();
-    Equipment   ::initData  (m_resourceHolder);
 
     //pushState(std::make_unique<State::Splash_Screen>(*this));
     pushState(std::make_unique<State::Playing>(*this));
@@ -60,12 +59,6 @@ void Application::runMainLoop()
 
         Display::pollEvents(*m_states.top());
     }
-}
-
-
-const Resource_Holder& Application::getResources() const
-{
-    return m_resourceHolder;
 }
 
 void Application::pushState(std::unique_ptr<State::State_Base> state)

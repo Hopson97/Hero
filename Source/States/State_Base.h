@@ -21,11 +21,6 @@ namespace State
             virtual void draw   ()                      = 0;
 
         protected:
-            const sf::Texture&      getTexture (Texture_ID id) const;
-            const sf::Font&         getFont    (Font_ID    id) const;
-            const sf::SoundBuffer&  getSound   (Sound_ID   id) const;
-
-        protected:
             Application* m_p_application;
 
     };

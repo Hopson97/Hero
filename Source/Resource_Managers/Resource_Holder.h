@@ -5,11 +5,19 @@
 #include "Sound_Manager.h"
 #include "Font_Manager.h"
 
-struct Resource_Holder
+class Resource_Holder
 {
-    Texture_Manager textures;
-    Font_Manager    fonts;
-    Sound_Manager   sounds;
+    public:
+        const sf::Texture&      getTexture (Texture_ID id) const;
+        const sf::Font&         getFont    (Font_ID    id) const;
+        const sf::SoundBuffer&  getSound   (Sound_ID   id) const;
+
+    private:
+        Texture_Manager textures;
+        Font_Manager    fonts;
+        Sound_Manager   sounds;
 };
+
+const Resource_Holder& getResources();
 
 #endif // RESOURCE_HOLDER_H_INCLUDED

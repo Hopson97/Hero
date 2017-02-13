@@ -2,65 +2,88 @@
 
 #include <SFML/Graphics.hpp>
 
-#include <vector>
+#include <array>
 #include <cassert>
 
 #include "../../Resource_Managers/Resource_Holder.h"
 
 namespace Equipment
 {
-    namespace
+    class Database
     {
-        std::vector<Data> primitiveData (static_cast<int>(Type::NUM_TYPES));
-        std::vector<Data> ironData      (static_cast<int>(Type::NUM_TYPES));
-        std::vector<Data> goldData      (static_cast<int>(Type::NUM_TYPES));
-        std::vector<Data> magmaData     (static_cast<int>(Type::NUM_TYPES));
 
-        void addToDatabase(std::vector<Data>& vect,
-                           Type type,
-                           int dmg,
-                           int health,
-                           const sf::Texture& texture)
-        {
-            vect[static_cast<int>(type)] = {dmg, health, texture};
-        }
+        public:
+            Data_Base()
+            {
+                addToDatabase(primitiveData, Type::Body,    0, 0, getTxr(Texture_ID::Player_Body_Shirt  ));
+                addToDatabase(primitiveData, Type::Head,    0, 0, getTxr(Texture_ID::Player_Head_None   ));
+                addToDatabase(primitiveData, Type::Shield,  0, 0, getTxr(Texture_ID::Player_Shield_Wood ));
+                addToDatabase(primitiveData, Type::Sword,   0, 0, getTxr(Texture_ID::Player_Sword_Wood  ));
+            }
 
-        const sf::Texture& getTxr(const Resource_Holder& holder, Texture_ID id)
-        {
-            return holder.textures.get(id);
-        }
-    }
+            const Data& getPrimData (int tier) const
+            {
 
+            }
 
-    void initData(const Resource_Holder& holder)
-    {
-        addToDatabase(primitiveData, Type::Body,    0, 0, getTxr(holder, Texture_ID::Player_Body_Shirt  ));
-        addToDatabase(primitiveData, Type::Head,    0, 0, getTxr(holder, Texture_ID::Player_Head_None   ));
-        addToDatabase(primitiveData, Type::Shield,  0, 0, getTxr(holder, Texture_ID::Player_Shield_Wood ));
-        addToDatabase(primitiveData, Type::Sword,   0, 0, getTxr(holder, Texture_ID::Player_Sword_Wood  ));
+            const Data& getIronData (int tier) const
+            {
 
-        //more to come tbh
-    }
+            }
+
+            const Data& getGoldData (int tier) const
+            {
+
+            }
+
+            const Data& getMagmaData(int tier) const
+            {
+
+            }
+
+        private:
+            void addToDatabase(std::array<Data, static_cast<int>(Type::NUM_TYPES)> arr,
+                               Type type,
+                               int dmg,
+                               int health,
+                               const sf::Texture& texture)
+            {
+                arr[static_cast<int>(type)] = {dmg, health, texture};
+            }
+
+            const sf::Texture& getTxr(Texture_ID id)
+            {
+                return getResources().getTexture(id);
+            }
+
+            std::array <Data, static_cast<int>(Type::NUM_TYPES)> primitiveData;
+            std::array <Data, static_cast<int>(Type::NUM_TYPES)> ironData;
+            std::array <Data, static_cast<int>(Type::NUM_TYPES)> goldData;
+            std::array <Data, static_cast<int>(Type::NUM_TYPES)> magmaData;
+    };
+
 
     const Data& getData(Type type, Tier tier)
     {
+        static Database database;
+
         auto tierNumber = static_cast<int>(tier);
 
         switch (tier)
         {
             case Tier::Primitive:
-                return primitiveData.at(tierNumber);
+                return database.getPrimData(tierNumber);
 
             case Tier::Iron:
-                return ironData.at(tierNumber);
+                return database.getIronData(tierNumber);
 
             case Tier::Gold:
-                return goldData.at(tierNumber);
+                return database.getGoldData(tierNumber);
 
             case Tier::Magma:
-                return magmaData.at(tierNumber);
+                return database.getMagmaData(tierNumber);
         }
-        return primitiveData.at(0); //To get rid of a warning that has no effect
+        return database.getPrimData(0); //To get rid of a warning that has no effect
     }
 
 

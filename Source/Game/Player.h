@@ -13,7 +13,7 @@ class Player
     constexpr static int SPEED      = 2;
 
     public:
-        Player(const Resource_Holder& holder);
+        Player();
 
         void update(float dt);
 

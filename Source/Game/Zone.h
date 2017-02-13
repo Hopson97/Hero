@@ -8,7 +8,7 @@ class Resource_Holder;
 class Zone
 {
     public:
-        Zone(const Resource_Holder& holder);
+        Zone();
 
         void draw();
 

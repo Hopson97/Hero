@@ -6,7 +6,7 @@
 #include "../Display.h"
 #include "../Resource_Managers/Resource_Holder.h"
 
-Player::Player(const Resource_Holder& holder)
+Player::Player()
 {
     initPart(m_legs);
     initPart(m_body);
@@ -18,10 +18,10 @@ Player::Player(const Resource_Holder& holder)
     m_sword.setSize({75, 75});
     m_sword.setOrigin(m_body.getOrigin().x - BODY_SIZE / 5, m_body.getOrigin().y);
 
-    m_legs      .setTexture(&holder.textures.get(Texture_ID::Player_Legs        ));
-    m_body      .setTexture(&holder.textures.get(Texture_ID::Player_Body_Shirt  ));
-    m_head      .setTexture(&holder.textures.get(Texture_ID::Player_Head_None   ));
-    m_shield    .setTexture(&holder.textures.get(Texture_ID::Player_Shield_Wood ));
+    m_legs      .setTexture(&getResources().getTexture(Texture_ID::Player_Legs        ));
+    m_body      .setTexture(&getResources().getTexture(Texture_ID::Player_Body_Shirt  ));
+    m_head      .setTexture(&getResources().getTexture(Texture_ID::Player_Head_None   ));
+    m_shield    .setTexture(&getResources().getTexture(Texture_ID::Player_Shield_Wood ));
 
     for (int i = 0 ; i <= 2 ; i++)
     {
