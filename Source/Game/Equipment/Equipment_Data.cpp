@@ -22,10 +22,17 @@ namespace Equipment
                 addToDatabase(primitiveData, Type::Sword,   0, 0, getTxr(Texture_ID::Player_Sword_Wood  ));
             }
 
-            const Data& getPrimData (int tier) const { return primitiveData [tier]; }
-            const Data& getIronData (int tier) const { return ironData      [tier]; }
-            const Data& getGoldData (int tier) const { return goldData      [tier]; }
-            const Data& getMagmaData(int tier) const { return magmaData     [tier]; }
+            const Data& getPrimData (int tier) const
+            { return primitiveData [tier]; }
+
+            const Data& getIronData (int tier) const
+            { return ironData      [tier]; }
+
+            const Data& getGoldData (int tier) const
+            { return goldData      [tier]; }
+
+            const Data& getMagmaData(int tier) const
+            { return magmaData     [tier]; }
 
         private:
             void addToDatabase(std::array<Data, static_cast<int>(Type::NUM_TYPES)>& arr,
@@ -38,9 +45,7 @@ namespace Equipment
             }
 
             const sf::Texture& getTxr(Texture_ID id)
-            {
-                return getResources().getTexture(id);
-            }
+            { return getResources().getTexture(id); }
 
             std::array <Data, static_cast<int>(Type::NUM_TYPES)> primitiveData;
             std::array <Data, static_cast<int>(Type::NUM_TYPES)> ironData;
@@ -78,7 +83,12 @@ namespace Equipment
     ,   m_texture       (&texture)
     { }
 
-    int Data::getDamageBonus()              const { return m_damageBonus;   }
-    int Data::getHealthBonus()              const { return m_healthBonus;   }
-    const sf::Texture& Data::getTexture()   const { return *m_texture;      }
+    int Data::getDamageBonus() const
+    { return m_damageBonus; }
+
+    int Data::getHealthBonus() const
+    { return m_healthBonus; }
+
+    const sf::Texture& Data::getTexture() const
+    { return *m_texture; }
 }

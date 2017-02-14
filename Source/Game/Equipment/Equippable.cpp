@@ -28,8 +28,8 @@ void Equippable::setUp( const sf::Vector2f&          size,
         if (origin == sf::Vector2f{0, 0})
         {
             auto rect = m_sprite.getLocalBounds();
-            m_sprite.setOrigin( rect.left + rect.width  / 2.0f,
-                                rect.top  + rect.height / 2.0f);
+            m_sprite.setOrigin(rect.left  + rect.width / 2.0f,
+                               m_sprite.getOrigin().y);
         }
         else
         {
@@ -62,8 +62,13 @@ void Equippable::draw()
 }
 
 
-const Equipment::Data& Equippable::getData      ()  const   { return *m_p_data; }
+const Equipment::Data& Equippable::getData      ()  const
+{ return *m_p_data; }
 
 
-const sf::RectangleShape& Equippable::getSprite ()  const   { return m_sprite;  }
+const sf::RectangleShape& Equippable::getSprite ()  const
+{ return m_sprite;  }
+
+void Equippable::setTextureRect(const sf::IntRect& rect)
+{ m_sprite.setTextureRect(rect); }
 

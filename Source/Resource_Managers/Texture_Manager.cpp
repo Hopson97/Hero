@@ -14,6 +14,7 @@ Texture_Manager::Texture_Manager()
     registerResource(Texture_ID::Player_Head_None,      path + "Player_Head_None.png");
     registerResource(Texture_ID::Player_Shield_Wood,    path + "Wood_Shield.png");
     registerResource(Texture_ID::Player_Sword_Wood,     path + "Wood_Sword.png");
+    registerResource(Texture_ID::Player_Sword_Wood,     path + "Wood_Slash.png");
 
     registerResource(Texture_ID::Zone_Village,          path + "Zone_1.png");
 }

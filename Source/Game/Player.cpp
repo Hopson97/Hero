@@ -7,6 +7,7 @@
 #include "../Resource_Managers/Resource_Holder.h"
 
 Player::Player()
+:   sword (m_equipment[(int)Equipment::Type::Sword])
 {
     setEquipmentBody        (Equipment::Tier::Primitive);
     setEquipmentHeadgear    (Equipment::Tier::Primitive);
@@ -22,19 +23,19 @@ Player::Player()
     m_equipment[(int)Equipment::Type::Shield].setUp({75, 75},
                                                      getBodySprite(),
                                                     {0, 10},
-                                                    { getBodySprite().getOrigin().x - BODY_SIZE / 3, getBodySprite().getOrigin().y});
+                                                    { getBodySprite().getOrigin().x + BODY_SIZE / 3, getBodySprite().getOrigin().y});
 
-    m_equipment[(int)Equipment::Type::Sword].setUp({75, 75},
+    m_equipment[(int)Equipment::Type::Sword].setUp({100, 100},
                                                     m_equipment[(int)Equipment::Type::Body].getSprite(),
-                                                   {0, 0},
-                                                   { getBodySprite().getOrigin().x - BODY_SIZE / 5, getBodySprite().getOrigin().y});
+                                                   {0, -15},
+                                                   { getBodySprite().getOrigin().x - BODY_SIZE / 1.5f, getBodySprite().getOrigin().y});
 
     m_legs.setTexture(&getResources().getTexture(Texture_ID::Player_Legs));
     m_legs.setSize({BODY_SIZE, BODY_SIZE});
 
     auto rect = m_legs.getLocalBounds();
-    m_legs.setOrigin(rect.left + rect.width  / 2.0f,
-                     rect.top  + rect.height / 2.0f);
+    m_legs.setOrigin(rect.left  + rect.width / 2.0f,
+                     m_legs.getOrigin().y);
 
     for (int i = 0 ; i <= 2 ; i++)
     {
@@ -42,11 +43,12 @@ Player::Player()
     }
     m_legsAnimation.addFrame({2 * 50, 0, 50, 40}, 0.05);
     m_legs.setTextureRect(m_legsAnimation.getFrame());
-
 }
 
 void Player::input()
 {
+
+
     for (auto& eq : m_equipment)
     {
         eq.input();

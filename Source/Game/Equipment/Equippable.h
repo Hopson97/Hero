@@ -22,6 +22,8 @@ class Equippable
         const Equipment::Data& getData() const;
         const sf::RectangleShape& getSprite() const;
 
+        void setTextureRect (const sf::IntRect& rect);
+
 
     private:
         sf::RectangleShape          m_sprite;

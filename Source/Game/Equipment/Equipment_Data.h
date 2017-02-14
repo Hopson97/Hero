@@ -16,8 +16,8 @@ namespace Equipment
     {
         Head,
         Body,
-        Shield,
         Sword,
+        Shield,
 
         NUM_TYPES
     };

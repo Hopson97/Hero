@@ -17,6 +17,7 @@ enum class Texture_ID
     Player_Head_None,
     Player_Shield_Wood,
     Player_Sword_Wood,
+    Player_Wood_Slash,
 
     Zone_Village
 };

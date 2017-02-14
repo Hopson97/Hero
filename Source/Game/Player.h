@@ -7,6 +7,7 @@
 
 #include "../Animation.h"
 #include "Equipment/Equippable.h"
+#include "Equipment/Sword.h"
 
 class Resource_Holder;
 
@@ -38,6 +39,8 @@ class Player
         sf::RectangleShape m_legs;
 
         Animation m_legsAnimation;
+
+        Sword sword;
 };
 
 #endif // PLAYER_H_INCLUDED
