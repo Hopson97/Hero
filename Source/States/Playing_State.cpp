@@ -22,7 +22,7 @@ namespace State
 
     void Playing::input()
     {
-
+        m_player.input();
     }
 
     void Playing::update(float dt)

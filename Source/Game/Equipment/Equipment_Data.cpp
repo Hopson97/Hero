@@ -4,6 +4,8 @@
 
 #include <array>
 #include <cassert>
+#include <iostream>
+#include <memory>
 
 #include "../../Resource_Managers/Resource_Holder.h"
 
@@ -12,7 +14,7 @@ namespace Equipment
     class Database
     {
         public:
-            Data_Base()
+            Database()
             {
                 addToDatabase(primitiveData, Type::Body,    0, 0, getTxr(Texture_ID::Player_Body_Shirt  ));
                 addToDatabase(primitiveData, Type::Head,    0, 0, getTxr(Texture_ID::Player_Head_None   ));
@@ -20,28 +22,13 @@ namespace Equipment
                 addToDatabase(primitiveData, Type::Sword,   0, 0, getTxr(Texture_ID::Player_Sword_Wood  ));
             }
 
-            const Data& getPrimData (int tier) const
-            {
-                return primitiveData[tier];
-            }
-
-            const Data& getIronData (int tier) const
-            {
-                return ironData[tier];
-            }
-
-            const Data& getGoldData (int tier) const
-            {
-                return goldData[tier];
-            }
-
-            const Data& getMagmaData(int tier) const
-            {
-                return magmaData[tier];
-            }
+            const Data& getPrimData (int tier) const { return primitiveData [tier]; }
+            const Data& getIronData (int tier) const { return ironData      [tier]; }
+            const Data& getGoldData (int tier) const { return goldData      [tier]; }
+            const Data& getMagmaData(int tier) const { return magmaData     [tier]; }
 
         private:
-            void addToDatabase(std::array<Data, static_cast<int>(Type::NUM_TYPES)> arr,
+            void addToDatabase(std::array<Data, static_cast<int>(Type::NUM_TYPES)>& arr,
                                Type type,
                                int dmg,
                                int health,
@@ -65,21 +52,21 @@ namespace Equipment
     {
         static Database database;
 
-        auto tierNumber = static_cast<int>(tier);
+        auto typeNumber = static_cast<int>(type);
 
         switch (tier)
         {
             case Tier::Primitive:
-                return database.getPrimData(tierNumber);
+                return database.getPrimData(typeNumber);
 
             case Tier::Iron:
-                return database.getIronData(tierNumber);
+                return database.getIronData(typeNumber);
 
             case Tier::Gold:
-                return database.getGoldData(tierNumber);
+                return database.getGoldData(typeNumber);
 
             case Tier::Magma:
-                return database.getMagmaData(tierNumber);
+                return database.getMagmaData(typeNumber);
         }
         return database.getPrimData(0); //To get rid of a warning that has no effect
     }
@@ -91,19 +78,7 @@ namespace Equipment
     ,   m_texture       (&texture)
     { }
 
-    int Data::getDamageBonus() const
-    {
-        return m_damageBonus;
-    }
-
-    int Data::getHealthBonus() const
-    {
-        return m_healthBonus;
-    }
-
-    const sf::Texture& Data::getTexture() const
-    {
-        return *m_texture;
-    }
-
+    int Data::getDamageBonus()              const { return m_damageBonus;   }
+    int Data::getHealthBonus()              const { return m_healthBonus;   }
+    const sf::Texture& Data::getTexture()   const { return *m_texture;      }
 }

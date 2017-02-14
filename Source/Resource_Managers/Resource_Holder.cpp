@@ -1,5 +1,7 @@
 #include "Resource_Holder.h"
 
+#include <iostream>
+
 const Resource_Holder& getResources()
 {
     static Resource_Holder holder;

@@ -8,85 +8,107 @@
 
 Player::Player()
 {
-    m_equipment[(int)Equipment::Type::Body]      = { Equipment::getData(Equipment::Type::Body, Equipment::Tier::Primitive) };
-    m_equipment[(int)Equipment::Type::Head]      = { Equipment::getData(Equipment::Type::Body, Equipment::Tier::Primitive) };
-    m_equipment[(int)Equipment::Type::Shield]    = { Equipment::getData(Equipment::Type::Body, Equipment::Tier::Primitive) };
-    m_equipment[(int)Equipment::Type::Sword]     = { Equipment::getData(Equipment::Type::Body, Equipment::Tier::Primitive) };
+    setEquipmentBody        (Equipment::Tier::Primitive);
+    setEquipmentHeadgear    (Equipment::Tier::Primitive);
+    setEquipmentSword       (Equipment::Tier::Primitive);
+    setEquipmentShield      (Equipment::Tier::Primitive);
 
+    m_equipment[(int)Equipment::Type::Body].setUp({BODY_SIZE, BODY_SIZE}, m_legs, {0, -BODY_SIZE});
 
-    initPart(m_legs);
-    initPart(m_body);
-    initPart(m_head);
+    m_equipment[(int)Equipment::Type::Head].setUp({BODY_SIZE, BODY_SIZE},
+                                                   getBodySprite(),
+                                                  {0, -BODY_SIZE});
 
-    m_shield.setSize({75, 75});
-    m_shield.setOrigin(m_body.getOrigin().x - BODY_SIZE / 3, m_body.getOrigin().y);
+    m_equipment[(int)Equipment::Type::Shield].setUp({75, 75},
+                                                     getBodySprite(),
+                                                    {0, 10},
+                                                    { getBodySprite().getOrigin().x - BODY_SIZE / 3, getBodySprite().getOrigin().y});
 
-    m_sword.setSize({75, 75});
-    m_sword.setOrigin(m_body.getOrigin().x - BODY_SIZE / 5, m_body.getOrigin().y);
+    m_equipment[(int)Equipment::Type::Sword].setUp({75, 75},
+                                                    m_equipment[(int)Equipment::Type::Body].getSprite(),
+                                                   {0, 0},
+                                                   { getBodySprite().getOrigin().x - BODY_SIZE / 5, getBodySprite().getOrigin().y});
 
-    m_legs      .setTexture(&getResources().getTexture(Texture_ID::Player_Legs        ));
-    m_body      .setTexture(&getResources().getTexture(Texture_ID::Player_Body_Shirt  ));
-    m_head      .setTexture(&getResources().getTexture(Texture_ID::Player_Head_None   ));
-    m_shield    .setTexture(&getResources().getTexture(Texture_ID::Player_Shield_Wood ));
+    m_legs.setTexture(&getResources().getTexture(Texture_ID::Player_Legs));
+    m_legs.setSize({BODY_SIZE, BODY_SIZE});
+
+    auto rect = m_legs.getLocalBounds();
+    m_legs.setOrigin(rect.left + rect.width  / 2.0f,
+                     rect.top  + rect.height / 2.0f);
 
     for (int i = 0 ; i <= 2 ; i++)
     {
         m_legsAnimation.addFrame({i * 50, 0, 50, 40}, 0.05);
     }
     m_legsAnimation.addFrame({2 * 50, 0, 50, 40}, 0.05);
-
     m_legs.setTextureRect(m_legsAnimation.getFrame());
 
 }
 
+void Player::input()
+{
+    for (auto& eq : m_equipment)
+    {
+        eq.input();
+    }
+
+}
+
+
 void Player::update(float dt)
 {
-    testForFlip();
     moveLegs(dt);
-    setBodyPosition();
+    for (auto& eq : m_equipment)
+    {
+        eq.update();
+    }
 }
 
 void Player::draw()
 {
+    for (auto& eq : m_equipment)
+    {
+        eq.draw();
+    }
     Display::draw(m_legs);
-    Display::draw(m_body);
-    Display::draw(m_head);
-    Display::draw(m_shield);
 }
 
-void Player::initPart(sf::RectangleShape& shape)
+void Player::setEquipmentBody(Equipment::Tier tier)
 {
-     shape.setSize({BODY_SIZE, BODY_SIZE});
-
-    auto rect = shape.getLocalBounds();
-
-    shape.setOrigin( rect.left + rect.width  / 2.0f,
-                     rect.top  + rect.height / 2.0f);
+    m_equipment[(int)Equipment::Type::Body].setData(Equipment::getData(Equipment::Type::Body, tier));
 }
 
-void Player::testForFlip()
+void Player::setEquipmentHeadgear(Equipment::Tier tier)
 {
-    auto mousePos   = sf::Mouse::getPosition(Display::get()).x;
-    auto playerPos  = m_legs.getPosition().x;
+    m_equipment[(int)Equipment::Type::Head].setData(Equipment::getData(Equipment::Type::Head, tier));
+}
 
-    if (mousePos > playerPos)
-    {
-        m_legs.setScale     (1, 1);
-        m_body.setScale     (1, 1);
-        m_head.setScale     (1, 1);
-        m_shield.setScale   (1, 1);
-    }
-    else
-    {
-        m_legs.setScale     (-1, 1);
-        m_body.setScale     (-1, 1);
-        m_head.setScale     (-1, 1);
-        m_shield.setScale   (-1, 1);
-    }
+void Player::setEquipmentSword(Equipment::Tier tier)
+{
+    m_equipment[(int)Equipment::Type::Sword].setData(Equipment::getData(Equipment::Type::Sword, tier));
+}
+
+void Player::setEquipmentShield(Equipment::Tier tier)
+{
+    m_equipment[(int)Equipment::Type::Shield].setData(Equipment::getData(Equipment::Type::Shield, tier));
+}
+
+const sf::RectangleShape& Player::getBodySprite() const
+{
+    return m_equipment[(int)Equipment::Type::Body].getSprite();
 }
 
 void Player::moveLegs(float dt)
 {
+    if (sf::Mouse::getPosition(Display::get()).x > m_legs.getPosition().x)
+    {
+        m_legs.setScale(1, 1);
+    }
+    else
+    {
+        m_legs.setScale(-1, 1);
+    }
+
     auto mousePos   = sf::Mouse::getPosition(Display::get());
     auto playerPos  = sf::Vector2f(m_legs.getPosition().x,
                                    m_legs.getPosition().y - (BODY_SIZE));
@@ -105,13 +127,4 @@ void Player::moveLegs(float dt)
     {
         m_legs.setTextureRect({0, 0, 50, 40});
     }
-}
-
-
-void Player::setBodyPosition()
-{
-    m_body.setPosition(m_legs.getPosition().x, m_legs.getPosition().y - BODY_SIZE);
-    m_head.setPosition(m_body.getPosition().x, m_body.getPosition().y - BODY_SIZE);
-
-    m_shield.setPosition(m_body.getPosition().x, m_body.getPosition().y + 10);
 }

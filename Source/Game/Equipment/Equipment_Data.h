@@ -1,6 +1,8 @@
 #ifndef Equipment_DATA_H_INCLUDED
 #define Equipment_DATA_H_INCLUDED
 
+
+
 class Resource_Holder;
 
 namespace sf
@@ -14,8 +16,8 @@ namespace Equipment
     {
         Head,
         Body,
-        Sword,
         Shield,
+        Sword,
 
         NUM_TYPES
     };
@@ -44,8 +46,6 @@ namespace Equipment
             int m_healthBonus;
             const sf::Texture* m_texture;
     };
-
-    void initData(const Resource_Holder& holder);
 
     const Data& getData(Type type, Tier tier);
 }

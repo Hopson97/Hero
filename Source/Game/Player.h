@@ -6,7 +6,7 @@
 #include <array>
 
 #include "../Animation.h"
-#include "Equipment/Equiptables.h"
+#include "Equipment/Equippable.h"
 
 class Resource_Holder;
 
@@ -18,26 +18,24 @@ class Player
     public:
         Player();
 
-        void update(float dt);
-
-        void draw();
+        void input  ();
+        void update (float dt);
+        void draw   ();
 
 
     private:
-        void initPart(sf::RectangleShape& shape);
+        void setEquipmentBody       (Equipment::Tier tier);
+        void setEquipmentHeadgear   (Equipment::Tier tier);
+        void setEquipmentSword      (Equipment::Tier tier);
+        void setEquipmentShield     (Equipment::Tier tier);
 
-        void testForFlip    ();
+        const sf::RectangleShape& getBodySprite() const;
+
         void moveLegs       (float dt);
-        void setBodyPosition();
 
         std::array<Equippable, (unsigned)Equipment::Type::NUM_TYPES> m_equipment;
 
-
         sf::RectangleShape m_legs;
-        sf::RectangleShape m_body;
-        sf::RectangleShape m_head;
-        sf::RectangleShape m_shield;
-        sf::RectangleShape m_sword;
 
         Animation m_legsAnimation;
 };
