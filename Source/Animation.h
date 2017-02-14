@@ -21,6 +21,11 @@ class Animation
         void addFrame (const sf::IntRect& frame, float timeToNextFrame);
 
         const sf::IntRect getFrame();
+        const sf::IntRect getFrame(int index);
+
+        bool isOnFinalFrame() const;
+        void reset();
+
 
 
     private:

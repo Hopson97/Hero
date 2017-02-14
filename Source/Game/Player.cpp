@@ -7,7 +7,7 @@
 #include "../Resource_Managers/Resource_Holder.h"
 
 Player::Player()
-:   sword (m_equipment[(int)Equipment::Type::Sword])
+:   m_sword         (m_equipment[(int)Equipment::Type::Sword])
 {
     setEquipmentBody        (Equipment::Tier::Primitive);
     setEquipmentHeadgear    (Equipment::Tier::Primitive);
@@ -47,7 +47,12 @@ Player::Player()
 
 void Player::input()
 {
-
+    static sf::Clock c;
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !m_sword.isSwinging() && c.getElapsedTime().asSeconds() > 0.3f)
+    {
+        m_sword.slash();
+        c.restart();
+    }
 
     for (auto& eq : m_equipment)
     {
@@ -59,6 +64,8 @@ void Player::input()
 
 void Player::update(float dt)
 {
+    m_sword.update();
+
     moveLegs(dt);
     for (auto& eq : m_equipment)
     {
@@ -68,6 +75,7 @@ void Player::update(float dt)
 
 void Player::draw()
 {
+    m_sword.draw();
     for (auto& eq : m_equipment)
     {
         eq.draw();

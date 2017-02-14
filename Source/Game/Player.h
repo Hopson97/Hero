@@ -40,7 +40,7 @@ class Player
 
         Animation m_legsAnimation;
 
-        Sword sword;
+        Sword m_sword;
 };
 
 #endif // PLAYER_H_INCLUDED

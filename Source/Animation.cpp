@@ -16,9 +16,27 @@ const sf::IntRect Animation::getFrame()
     {
         m_currentFrame++;
         if (m_currentFrame == m_frames.size() )
-            m_currentFrame = 0;
+            reset();
         m_timer.restart().asSeconds();
     }
 
     return  m_frames[m_currentFrame].frame;
+}
+
+const sf::IntRect Animation::getFrame(int index)
+{
+    return m_frames[index].frame;
+}
+
+
+bool Animation::isOnFinalFrame() const
+{
+    return m_currentFrame == m_frames.size() - 1;
+}
+
+
+void Animation::reset()
+{
+    m_currentFrame = 0;
+    m_timer.restart().asSeconds();
 }

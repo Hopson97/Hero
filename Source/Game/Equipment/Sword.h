@@ -16,6 +16,8 @@ class Sword
 
         void update();
 
+        bool isSwinging() const;
+
     private:
         sf::RectangleShape m_slashEffect;
 
@@ -23,6 +25,8 @@ class Sword
         Animation m_slashAnimation;
 
         Equippable* m_p_sword;
+        bool m_isSwinging = false;
+        sf::Clock m_slashTimer;
 };
 
 #endif // SWORD_H_INCLUDED
