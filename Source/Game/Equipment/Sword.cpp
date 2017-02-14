@@ -7,7 +7,6 @@
 #include "../../Display.h"
 #include "../../Resource_Managers/Resource_Holder.h"
 
-
 Sword::Sword(Equippable& sword)
 :   m_p_sword (&sword)
 {
@@ -17,12 +16,12 @@ Sword::Sword(Equippable& sword)
     }
     sword.setTextureRect(m_swordAnimation.getFrame(0));
 
-    m_slashEffect.setSize({100, 100});
-    m_slashEffect.setTexture(&getResources().getTexture(Texture_ID::Player_Wood_Slash));
+    m_slashEffect.setSize({SWORD_SIZE, SWORD_SIZE});
     for (int i = 0 ; i <= 2 ; i++)
     {
-        m_slashAnimation.addFrame({i * 50, 0, 50, 50}, 0.15);
+        m_slashAnimation.addFrame({i * 50, 0, 50, 50}, 0.1);
     }
+    m_slashAnimation.addFrame({0, 0, 50, 50}, 0.15);
     m_slashEffect.setTextureRect(m_slashAnimation.getFrame(0));
 }
 
@@ -63,4 +62,24 @@ bool Sword::isSwinging() const
 {
     return m_isSwinging;
 }
+
+void Sword::upgrade(Equipment::Tier tier)
+{
+    switch(tier)
+    {
+        case Equipment::Tier::Primitive:
+            m_slashEffect.setTexture(&getResources().getTexture(Texture_ID::Player_Wood_Slash));
+            break;
+
+        case Equipment::Tier::Iron:
+            break;
+
+        case Equipment::Tier::Gold:
+            break;
+
+        case Equipment::Tier::Magma:
+            break;
+    }
+}
+
 

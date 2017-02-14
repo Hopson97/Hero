@@ -23,16 +23,20 @@ class Player
         void update (float dt);
         void draw   ();
 
+        const sf::Vector2f& getPosition () const;
 
-    private:
         void setEquipmentBody       (Equipment::Tier tier);
         void setEquipmentHeadgear   (Equipment::Tier tier);
         void setEquipmentSword      (Equipment::Tier tier);
         void setEquipmentShield     (Equipment::Tier tier);
 
-        const sf::RectangleShape& getBodySprite() const;
+        const Equippable& getBody       () const;
+        const Equippable& getHeadgear   () const;
+        const Equippable& getSword      () const;
+        const Equippable& getShield     () const;
 
-        void moveLegs       (float dt);
+    private:
+        void moveLegs (float dt);
 
         std::array<Equippable, (unsigned)Equipment::Type::NUM_TYPES> m_equipment;
 

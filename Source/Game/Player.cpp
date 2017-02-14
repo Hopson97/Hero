@@ -9,6 +9,8 @@
 Player::Player()
 :   m_sword         (m_equipment[(int)Equipment::Type::Sword])
 {
+    m_legs.setPosition(500, 500);
+
     setEquipmentBody        (Equipment::Tier::Primitive);
     setEquipmentHeadgear    (Equipment::Tier::Primitive);
     setEquipmentSword       (Equipment::Tier::Primitive);
@@ -17,18 +19,18 @@ Player::Player()
     m_equipment[(int)Equipment::Type::Body].setUp({BODY_SIZE, BODY_SIZE}, m_legs, {0, -BODY_SIZE});
 
     m_equipment[(int)Equipment::Type::Head].setUp({BODY_SIZE, BODY_SIZE},
-                                                   getBodySprite(),
+                                                   getBody().getSprite(),
                                                   {0, -BODY_SIZE});
 
     m_equipment[(int)Equipment::Type::Shield].setUp({75, 75},
-                                                     getBodySprite(),
+                                                     getBody().getSprite(),
                                                     {0, 10},
-                                                    { getBodySprite().getOrigin().x + BODY_SIZE / 3, getBodySprite().getOrigin().y});
+                                                    { getBody().getSprite().getOrigin().x + BODY_SIZE / 3, getBody().getSprite().getOrigin().y});
 
-    m_equipment[(int)Equipment::Type::Sword].setUp({100, 100},
+    m_equipment[(int)Equipment::Type::Sword].setUp({Sword::SWORD_SIZE, Sword::SWORD_SIZE},
                                                     m_equipment[(int)Equipment::Type::Body].getSprite(),
-                                                   {0, -15},
-                                                   { getBodySprite().getOrigin().x - BODY_SIZE / 1.5f, getBodySprite().getOrigin().y});
+                                                   {0, -35},
+                                                   { getBody().getSprite().getOrigin().x - BODY_SIZE / 1.5f, getBody().getSprite().getOrigin().y});
 
     m_legs.setTexture(&getResources().getTexture(Texture_ID::Player_Legs));
     m_legs.setSize({BODY_SIZE, BODY_SIZE});
@@ -61,7 +63,6 @@ void Player::input()
 
 }
 
-
 void Player::update(float dt)
 {
     m_sword.update();
@@ -70,6 +71,16 @@ void Player::update(float dt)
     for (auto& eq : m_equipment)
     {
         eq.update();
+    }
+    {
+        auto x = m_legs.getPosition().x;
+        auto y = m_legs.getPosition().y;
+
+        if (x < 0)              m_legs.setPosition(0, y);
+        if (y - BODY_SIZE < 0)  m_legs.setPosition(x, BODY_SIZE);
+
+        if (x > Display::WIDTH)                 m_legs.setPosition(Display::WIDTH,  y);
+        if (y + BODY_SIZE > Display::HEIGHT)    m_legs.setPosition(x,               Display::HEIGHT - BODY_SIZE);
     }
 }
 
@@ -83,30 +94,28 @@ void Player::draw()
     Display::draw(m_legs);
 }
 
+const sf::Vector2f& Player::getPosition() const
+{ return m_legs.getPosition(); }
+
 void Player::setEquipmentBody(Equipment::Tier tier)
-{
-    m_equipment[(int)Equipment::Type::Body].setData(Equipment::getData(Equipment::Type::Body, tier));
-}
+{ m_equipment[(int)Equipment::Type::Body].setData(Equipment::getData(Equipment::Type::Body, tier)); }
 
 void Player::setEquipmentHeadgear(Equipment::Tier tier)
-{
-    m_equipment[(int)Equipment::Type::Head].setData(Equipment::getData(Equipment::Type::Head, tier));
-}
+{ m_equipment[(int)Equipment::Type::Head].setData(Equipment::getData(Equipment::Type::Head, tier)); }
+
+void Player::setEquipmentShield(Equipment::Tier tier)
+{ m_equipment[(int)Equipment::Type::Shield].setData(Equipment::getData(Equipment::Type::Shield, tier)); }
 
 void Player::setEquipmentSword(Equipment::Tier tier)
 {
     m_equipment[(int)Equipment::Type::Sword].setData(Equipment::getData(Equipment::Type::Sword, tier));
+    m_sword.upgrade(tier);
 }
 
-void Player::setEquipmentShield(Equipment::Tier tier)
-{
-    m_equipment[(int)Equipment::Type::Shield].setData(Equipment::getData(Equipment::Type::Shield, tier));
-}
-
-const sf::RectangleShape& Player::getBodySprite() const
-{
-    return m_equipment[(int)Equipment::Type::Body].getSprite();
-}
+const Equippable& Player::getBody       () const { return m_equipment[(int)Equipment::Type::Body];      }
+const Equippable& Player::getHeadgear   () const { return m_equipment[(int)Equipment::Type::Head];      }
+const Equippable& Player::getSword      () const { return m_equipment[(int)Equipment::Type::Sword];     }
+const Equippable& Player::getShield     () const { return m_equipment[(int)Equipment::Type::Shield];    }
 
 void Player::moveLegs(float dt)
 {
