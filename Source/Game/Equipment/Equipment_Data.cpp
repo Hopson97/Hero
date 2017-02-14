@@ -11,7 +11,6 @@ namespace Equipment
 {
     class Database
     {
-
         public:
             Data_Base()
             {
@@ -23,22 +22,22 @@ namespace Equipment
 
             const Data& getPrimData (int tier) const
             {
-
+                return primitiveData[tier];
             }
 
             const Data& getIronData (int tier) const
             {
-
+                return ironData[tier];
             }
 
             const Data& getGoldData (int tier) const
             {
-
+                return goldData[tier];
             }
 
             const Data& getMagmaData(int tier) const
             {
-
+                return magmaData[tier];
             }
 
         private:
@@ -61,7 +60,6 @@ namespace Equipment
             std::array <Data, static_cast<int>(Type::NUM_TYPES)> goldData;
             std::array <Data, static_cast<int>(Type::NUM_TYPES)> magmaData;
     };
-
 
     const Data& getData(Type type, Tier tier)
     {

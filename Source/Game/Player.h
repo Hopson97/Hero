@@ -3,7 +3,10 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <array>
+
 #include "../Animation.h"
+#include "Equipment/Equiptables.h"
 
 class Resource_Holder;
 
@@ -26,6 +29,8 @@ class Player
         void testForFlip    ();
         void moveLegs       (float dt);
         void setBodyPosition();
+
+        std::array<Equippable, (unsigned)Equipment::Type::NUM_TYPES> m_equipment;
 
 
         sf::RectangleShape m_legs;

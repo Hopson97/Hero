@@ -8,6 +8,12 @@
 
 Player::Player()
 {
+    m_equipment[(int)Equipment::Type::Body]      = { Equipment::getData(Equipment::Type::Body, Equipment::Tier::Primitive) };
+    m_equipment[(int)Equipment::Type::Head]      = { Equipment::getData(Equipment::Type::Body, Equipment::Tier::Primitive) };
+    m_equipment[(int)Equipment::Type::Shield]    = { Equipment::getData(Equipment::Type::Body, Equipment::Tier::Primitive) };
+    m_equipment[(int)Equipment::Type::Sword]     = { Equipment::getData(Equipment::Type::Body, Equipment::Tier::Primitive) };
+
+
     initPart(m_legs);
     initPart(m_body);
     initPart(m_head);
