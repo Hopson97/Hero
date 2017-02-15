@@ -23,10 +23,11 @@ namespace State
 
     void Playing::update(float dt)
     {
+/*
         std::cout << " X: " << sf::Mouse::getPosition(Display::get()).x
                   << " Y: " << sf::Mouse::getPosition(Display::get()).y
                   << "\n";
-
+*/
         switch(m_playerState)
         {
             case Player_State::Roaming:

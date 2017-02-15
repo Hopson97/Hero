@@ -20,6 +20,7 @@ Texture_Manager::Texture_Manager()
 
 
     registerResource(Texture_ID::Zone_Village, path + "Zone_1.png");
+    registerResource(Texture_ID::Zone_Forest,  path + "Zone_Forest.png");
 
 
     registerResource(Texture_ID::World_Map, path + "Map.png");

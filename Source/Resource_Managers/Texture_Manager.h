@@ -22,6 +22,7 @@ enum class Texture_ID
     Entity_Blacksmith,
 
     Zone_Village,
+    Zone_Forest,
 
     GUI_Exit_Button,
 
