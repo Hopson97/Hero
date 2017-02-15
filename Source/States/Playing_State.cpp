@@ -61,6 +61,7 @@ namespace State
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
             {
                 m_playerState = Player_State::Zone_Switch;
+                m_mapGUI.resetBool();
             }
         }
         else
@@ -78,7 +79,6 @@ namespace State
     void Playing::zoneSwitchUpdate(float dt)
     {
         m_mapGUI.update();
-        std::cout << "up " << std::endl;
         if (m_mapGUI.shouldExit())
         {
             //get zone

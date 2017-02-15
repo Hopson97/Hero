@@ -10,7 +10,10 @@ Map_GUI::Map_GUI()
                  {200, 100},
                  getResources().getTexture(Texture_ID::GUI_Exit_Button),
                  [&]() { m_shouldExit = true; })
-{ }
+{
+    m_background.setTexture(&getResources().getTexture(Texture_ID::World_Map));
+    m_background.setSize ({Display::WIDTH, Display::HEIGHT});
+}
 
 void Map_GUI::resetBool()
 {
