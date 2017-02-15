@@ -7,26 +7,19 @@
 
 Game_Notice::Game_Notice()
 {
+    m_sprite.setSize({250, 28});
+    m_sprite.setPosition(Display::WIDTH / 2 - m_sprite.getLocalBounds().width / 2, 10);
+    m_sprite.setOutlineThickness(3);
+    m_sprite.setOutlineColor(sf::Color::Black);
+    m_sprite.setFillColor({80, 80, 80, 225});
+
     m_text.setFont(getResources().getFont(Font_ID::RS));
     m_text.setCharacterSize(20);
-    m_text.setPosition(Display::WIDTH / 2, 10);
-
-    m_sprite.setSize({250, 28});
-    m_sprite.setPosition(Display::WIDTH / 2, 10);
-    m_sprite.setOutlineThickness(2);
-    m_sprite.setOutlineColor(sf::Color::Black);
-    m_sprite.setFillColor({50, 255, 255, 190});
+    m_text.setPosition(m_sprite.getPosition().x, 12);
 }
 
 void Game_Notice::setString(std::string message)
 {
-    if (message.length() > 23) //Max for one line
-    {
-        std::string sub1 = message.substr(0, 23);
-        std::string sub2 = message.substr(24, message.length() - 1);
-
-        message = sub1 + "\n" + sub2;
-    }
     m_text.setString(std::move(message));
     toggleOn();
 }
