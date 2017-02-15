@@ -1,5 +1,8 @@
 #include "Component.h"
 
-CBase::Cbase(Entity& entity)
-:   m_entity (&entiy)
-{ }
+namespace Component
+{
+    CBase::CBase(Entity& entity)
+    :   m_p_entity (&entity)
+    { }
+}

@@ -5,10 +5,12 @@
 
 #include "../../Animation.h"
 
+class World;
+
 class Entity
 {
     public:
-        virtual void update (float dt) = 0;
+        virtual void update (World& world, float dt) = 0;
 
         virtual void draw   () = 0;
 };

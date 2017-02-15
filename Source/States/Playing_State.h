@@ -3,12 +3,9 @@
 
 #include "State_Base.h"
 
-#include "../Animation.h"
-
 #include "../Game/Player.h"
-#include "../Game/Zone.h"
-
 #include "../Game/Game_Notice.h"
+#include "../Game/World.h"
 
 namespace State
 {
@@ -24,8 +21,8 @@ namespace State
 
         private:
             Player      m_player;
-            Zone        m_zone;
             Game_Notice m_notice;
+            World       m_world;
     };
 }
 

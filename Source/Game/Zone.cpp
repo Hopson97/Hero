@@ -13,11 +13,16 @@ Zone::Zone()
 
     m_background  .setTexture(&getResources().getTexture(Texture_ID::Zone_Village));
     m_shakeGround .setTexture(&getResources().getTexture(Texture_ID::Zone_Village));
+
+    m_entities.push_back(std::make_unique<Blacksmith>());
 }
 
-void Zone::update(float dt)
+void Zone::update(World& world, float dt)
 {
-    m_blacksmith.update(dt);
+    for (auto& entity : m_entities)
+    {
+        entity->update(world, dt);
+    }
 }
 
 
@@ -26,5 +31,8 @@ void Zone::draw()
     Display::draw(m_background);
     Display::draw(m_shakeGround);
 
-    m_blacksmith.draw();
+    for (auto& entity : m_entities)
+    {
+        entity->draw();
+    }
 }

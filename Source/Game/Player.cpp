@@ -62,7 +62,7 @@ void Player::input()
     }
 }
 
-void Player::update(float dt)
+void Player::update(World& world, float dt)
 {
     m_sword.update();
 

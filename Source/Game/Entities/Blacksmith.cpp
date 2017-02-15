@@ -3,6 +3,8 @@
 #include "../../Display.h"
 #include "../../Resource_Managers/Resource_Holder.h"
 
+#include "../World.h"
+
 Blacksmith::Blacksmith()
 {
     m_sprite.setSize({200, 230});
@@ -17,7 +19,7 @@ Blacksmith::Blacksmith()
     m_sprite.setTextureRect(m_animation.getFrame());
 }
 
-void Blacksmith::update(float dt)
+void Blacksmith::update(World& world, float dt)
 {
     m_sprite.setTextureRect(m_animation.getFrame());
 }

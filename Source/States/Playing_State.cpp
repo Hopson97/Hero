@@ -10,8 +10,6 @@ namespace State
 {
     Playing::Playing(Application& application)
     :   State_Base  (application)
-    ,   m_player    ()
-    ,   m_zone      ()
     {
         m_notice.setString("Press space to interact.");
     }
@@ -28,8 +26,8 @@ namespace State
 
     void Playing::update(float dt)
     {
-        m_player.update(dt);
-        m_zone.update(dt);
+        m_player.update (m_world, dt);
+        m_world.update  (m_player, m_notice, dt);
 
         if (m_player.getPosition().x >= Display::WIDTH  - 200 &&
             m_player.getPosition().y <= 200)
@@ -44,9 +42,10 @@ namespace State
 
     void Playing::draw()
     {
-        m_zone.draw();
-        m_player.draw();
-        m_notice.draw();
+        m_world.draw    ();
+
+        m_player.draw   ();
+        m_notice.draw   ();
     }
 
 }

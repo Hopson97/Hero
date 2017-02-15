@@ -17,13 +17,13 @@ class Resource_Holder;
 class Player : public Entity
 {
     constexpr static int BODY_SIZE  = 100;
-    constexpr static int SPEED      = 2;
+    constexpr static int SPEED      = 1.3;
 
     public:
         Player();
 
         void input  ();
-        void update (float dt);
+        void update (World& world, float dt);
         void draw   ();
 
         const sf::Vector2f& getPosition () const;
