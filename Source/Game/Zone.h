@@ -13,6 +13,7 @@ class Zone
 {
     public:
         Zone();
+        virtual ~Zone() = default;
 
         void update(World& world, Player& player, float dt);
 

@@ -7,15 +7,15 @@
 
 Blacksmith::Blacksmith()
 {
-    m_sprite.setSize({200, 230});
+    m_sprite.setSize({255, 255});
     m_sprite.setTexture(&getResources().getTexture(Texture_ID::Entity_Blacksmith));
-    m_sprite.setPosition(25, 25);
+    m_sprite.setPosition(5, 5);
 
     for (int i = 0 ; i <= 2 ; i++)
     {
-        m_animation.addFrame({i * 50, 0, 50, 50}, 0.2);
+        m_animation.addFrame({i * 100, 0, 100, 100}, 0.2);
     }
-    m_animation.addFrame({2 * 50, 0, 50, 50}, 0.2);
+    m_animation.addFrame({2 * 100, 0, 100, 100}, 0.2);
     m_sprite.setTextureRect(m_animation.getFrame());
 }
 

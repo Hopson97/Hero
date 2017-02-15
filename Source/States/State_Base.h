@@ -13,7 +13,7 @@ namespace State
     {
         public:
             State_Base(Application& app);
-            virtual ~State_Base() {}
+            virtual ~State_Base() = default;
 
             virtual void input  (const sf::Event& e)    = 0;
             virtual void input  ()                      = 0;
