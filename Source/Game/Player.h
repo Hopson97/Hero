@@ -16,8 +16,8 @@ class Resource_Holder;
 
 class Player
 {
-    constexpr static int BODY_SIZE  = 100;
-    constexpr static int SPEED      = 1.6;
+    constexpr static int BODY_SIZE  = 95;
+    constexpr static int SPEED      = 2;
 
     public:
         Player();

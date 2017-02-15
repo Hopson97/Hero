@@ -13,7 +13,6 @@ namespace State
         m_sprite.setTexture(&splash);
     }
 
-
     Splash_Screen::Splash::Splash(float time, const sf::Texture& splash, const sf::SoundBuffer& sound)
     :   m_time (time)
     {

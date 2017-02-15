@@ -11,9 +11,7 @@ namespace State
     Playing::Playing(Application& application)
     :   State_Base  (application)
     ,   m_world     (m_player)
-    {
-        m_notice.setString("Press space to interact.");
-    }
+    { }
 
     void Playing::input(const sf::Event& e)
     { }
@@ -25,12 +23,45 @@ namespace State
 
     void Playing::update(float dt)
     {
-        m_world.update (m_notice, dt);
+        switch(m_playerState)
+        {
+            case Player_State::Roaming:
+                roamUpdate(dt);
+                break;
+
+            case Player_State::Zone_Switch:
+                zoneSwitchUpdate(dt);
+                break;
+        }
+    }
+
+    void Playing::draw()
+    {
+        switch(m_playerState)
+        {
+            case Player_State::Roaming:
+                roamDraw();
+                break;
+
+            case Player_State::Zone_Switch:
+                zoneSwitchDraw();
+                break;
+        }
+    }
+
+
+    void Playing::roamUpdate(float dt)
+    {
+       m_world.update (m_notice, dt);
 
         if (m_player.getPosition().x >= Display::WIDTH  - 200 &&
             m_player.getPosition().y <= 200)
         {
             m_notice.setString("Press space to interact!");
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+            {
+                m_playerState = Player_State::Zone_Switch;
+            }
         }
         else
         {
@@ -38,10 +69,27 @@ namespace State
         }
     }
 
-    void Playing::draw()
+    void Playing::roamDraw()
     {
         m_world.draw    ();
         m_notice.draw   ();
     }
 
+    void Playing::zoneSwitchUpdate(float dt)
+    {
+        m_mapGUI.update();
+        std::cout << "up " << std::endl;
+        if (m_mapGUI.shouldExit())
+        {
+            //get zone
+            //set zone
+            m_playerState = Player_State::Roaming;
+        }
+    }
+
+
+    void Playing::zoneSwitchDraw()
+    {
+        m_mapGUI.draw();
+    }
 }

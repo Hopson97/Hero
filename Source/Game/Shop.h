@@ -1,0 +1,6 @@
+#ifndef SHOP_H_INCLUDED
+#define SHOP_H_INCLUDED
+
+
+
+#endif // SHOP_H_INCLUDED

@@ -22,12 +22,9 @@ Zone::Zone()
 
 void Zone::update(World& world, Player& player, float dt)
 {
-    if (!world.isPaused())
+    for (auto& entity : m_entities)
     {
-        for (auto& entity : m_entities)
-        {
-            entity->update(world, player, dt);
-        }
+        entity->update(world, player, dt);
     }
 }
 

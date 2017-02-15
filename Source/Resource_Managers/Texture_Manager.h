@@ -21,7 +21,11 @@ enum class Texture_ID
 
     Entity_Blacksmith,
 
-    Zone_Village
+    Zone_Village,
+
+    GUI_Exit_Button,
+
+    World_Map
 };
 
 class Texture_Manager : public Resource_Manager<sf::Texture, Texture_ID>

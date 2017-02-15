@@ -1,5 +1,7 @@
 #include "World.h"
 
+#include <iostream>
+
 #include "Game_Notice.h"
 
 #include "Player.h"
@@ -15,11 +17,8 @@ void World::input()
 
 void World::update(Game_Notice& notice, float dt)
 {
-    if(!m_isPaused)
-    {
-        m_p_player->update(*this, dt);
-    }
-
+    m_p_player->update(*this, dt);
+    executeActions();
     m_zone.update(*this, *m_p_player, dt);
 }
 
@@ -36,16 +35,14 @@ void World::addAction(std::unique_ptr<Action> action)
     m_actions.push_back(std::move(action));
 }
 
-
 float World::getDistanceToPlayer(const sf::Vector2f origin)
 {
-    int xd = m_p_player->getPosition().x - origin.x;
-    int yd = m_p_player->getPosition().y - origin.y;
+    auto xd     = m_p_player->getPosition().x - origin.x;
+    auto yd     = m_p_player->getPosition().y - origin.y;
+    auto result = std::sqrt(xd * xd + yd * yd);
 
-    return sqrt(xd * xd + yd * yd);
+    return result;
 }
-
-
 
 void World::executeActions()
 {
@@ -55,21 +52,6 @@ void World::executeActions()
     }
 
     m_actions.clear();
-}
-
-void World::pause()
-{
-    m_isPaused = true;
-}
-
-void World::resume()
-{
-    m_isPaused = false;
-}
-
-bool World::isPaused() const
-{
-    return m_isPaused;
 }
 
 
