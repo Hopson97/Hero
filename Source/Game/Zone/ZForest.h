@@ -1,6 +1,8 @@
 #ifndef ZFOREST_H_INCLUDED
 #define ZFOREST_H_INCLUDED
 
+#include "Zone.h"
+
 class ZForest : public Zone
 {
     public:
