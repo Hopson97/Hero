@@ -2,6 +2,14 @@
 
 #include <iostream>
 
+void Animation::addFrames(int numFrames, const sf::IntRect& frameSize, float time)
+{
+    for (int i = 0 ; i <= numFrames ; i++)
+    {
+        addFrame({frameSize.left * i, frameSize.top, frameSize.width, frameSize.height}, time);
+    }
+}
+
 void Animation::addFrame(const sf::IntRect& frame, float timeToNextFrame)
 {
     if (timeToNextFrame > m_longestFrameTime)

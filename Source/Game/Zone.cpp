@@ -15,8 +15,16 @@ Zone::Zone()
     m_shakeGround .setTexture(&getResources().getTexture(Texture_ID::Zone_Village));
 }
 
+void Zone::update(float dt)
+{
+    m_blacksmith.update(dt);
+}
+
+
 void Zone::draw()
 {
     Display::draw(m_background);
     Display::draw(m_shakeGround);
+
+    m_blacksmith.draw();
 }

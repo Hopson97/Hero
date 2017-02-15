@@ -19,6 +19,8 @@ enum class Texture_ID
     Player_Sword_Wood,
     Player_Wood_Slash,
 
+    Entity_Blacksmith,
+
     Zone_Village
 };
 

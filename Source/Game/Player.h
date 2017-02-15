@@ -6,12 +6,15 @@
 #include <array>
 
 #include "../Animation.h"
+
 #include "Equipment/Equippable.h"
 #include "Equipment/Sword.h"
 
+#include "Entities/Entity.h"
+
 class Resource_Holder;
 
-class Player
+class Player : public Entity
 {
     constexpr static int BODY_SIZE  = 100;
     constexpr static int SPEED      = 2;

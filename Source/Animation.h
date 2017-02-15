@@ -18,6 +18,8 @@ class Animation
     };
 
     public:
+        void addFrames(int numFrames, const sf::IntRect& frameSize, float time);
+
         void addFrame (const sf::IntRect& frame, float timeToNextFrame);
 
         const sf::IntRect getFrame();

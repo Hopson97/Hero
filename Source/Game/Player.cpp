@@ -60,7 +60,6 @@ void Player::input()
     {
         eq.input();
     }
-
 }
 
 void Player::update(float dt)
@@ -72,6 +71,8 @@ void Player::update(float dt)
     {
         eq.update();
     }
+
+    //window edge collisions
     {
         auto x = m_legs.getPosition().x;
         auto y = m_legs.getPosition().y;
@@ -97,6 +98,7 @@ void Player::draw()
 const sf::Vector2f& Player::getPosition() const
 { return m_legs.getPosition(); }
 
+//Just some setters for the equpment tiers
 void Player::setEquipmentBody(Equipment::Tier tier)
 { m_equipment[(int)Equipment::Type::Body].setData(Equipment::getData(Equipment::Type::Body, tier)); }
 
@@ -112,6 +114,7 @@ void Player::setEquipmentSword(Equipment::Tier tier)
     m_sword.upgrade(tier);
 }
 
+//getters for equipment
 const Equippable& Player::getBody       () const { return m_equipment[(int)Equipment::Type::Body];      }
 const Equippable& Player::getHeadgear   () const { return m_equipment[(int)Equipment::Type::Head];      }
 const Equippable& Player::getSword      () const { return m_equipment[(int)Equipment::Type::Sword];     }

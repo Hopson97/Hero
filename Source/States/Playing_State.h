@@ -8,6 +8,8 @@
 #include "../Game/Player.h"
 #include "../Game/Zone.h"
 
+#include "../Game/Game_Notice.h"
+
 namespace State
 {
     class Playing : public State_Base
@@ -21,8 +23,9 @@ namespace State
             void draw   ();
 
         private:
-            Player  m_player;
-            Zone    m_zone;
+            Player      m_player;
+            Zone        m_zone;
+            Game_Notice m_notice;
     };
 }
 
