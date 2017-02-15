@@ -4,6 +4,9 @@
 #include "../Resource_Managers/Resource_Holder.h"
 #include "../Util/General_Maths.h"
 
+#include "Zone/ZTown.h"
+#include "Zone/ZForest.h"
+
 #include <iostream>
 
 Map_GUI::Map_GUI()
@@ -66,12 +69,19 @@ Zone_ID Map_GUI::getZoneID()
     return m_selector.getZone().getID();
 }
 
-/*
+
 std::unique_ptr<Zone> Map_GUI::getZone()
 {
+    switch (m_selector.getZone().getID())
+    {
+        case Zone_ID::Town:
+            return std::make_unique<ZTown>();
 
+        case Zone_ID::Forest:
+            return std::make_unique<ZForest>();
+    }
 }
-*/
+
 
 Map_Zone::Map_Zone (Zone_ID id, const sf::Vector2f& pos, int lvlReq)
 :   m_id            (id)

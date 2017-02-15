@@ -6,7 +6,8 @@
 #include "../Entities/Blacksmith.h"
 #include "../World.h"
 
-Zone::Zone(const sf::Texture& background)
+Zone::Zone(const sf::Texture& background, Zone_ID id)
+:   m_id (id)
 {
     m_background.setSize({(float)Display::get().getSize().x,
                           (float)Display::get().getSize().y});
@@ -39,9 +40,15 @@ void Zone::draw()
     onDraw();
 }
 
+Zone_ID Zone::getID() const
+{
+    return m_id;
+}
+
+
 int Zone::checkForDeadEntities()
 {
-    int count;
+    int count = 0;
     for (auto itr = m_entities.begin(); itr != m_entities.end() ; )
     {
         if ((*itr)->isDead())

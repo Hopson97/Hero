@@ -5,7 +5,7 @@
 #include "../Player.h"
 
 ZForest::ZForest()
-:   Zone (getResources().getTexture(Texture_ID::Zone_Forest))
+:   Zone (getResources().getTexture(Texture_ID::Zone_Forest), Zone_ID::Forest)
 {
 
 }

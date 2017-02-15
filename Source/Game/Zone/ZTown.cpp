@@ -5,7 +5,7 @@
 #include "../Player.h"
 
 ZTown::ZTown()
-:   Zone (getResources().getTexture(Texture_ID::Zone_Village))
+:   Zone (getResources().getTexture(Texture_ID::Zone_Village), Zone_ID::Town)
 {
     addEntity(std::make_unique<Blacksmith>());
 }

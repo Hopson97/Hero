@@ -7,6 +7,8 @@
 
 #include "../Entities/Entity.h"
 
+#include "EZone_ID.h"
+
 class Resource_Holder;
 class World;
 class Player;
@@ -20,8 +22,10 @@ class Zone
 
         void draw();
 
+        Zone_ID getID() const;
+
     protected:
-        Zone(const sf::Texture& background);
+        Zone(const sf::Texture& background, Zone_ID id);
 
         void addEntity(std::unique_ptr<Entity>);
 
@@ -36,6 +40,8 @@ class Zone
         sf::RectangleShape m_shakeGround;
 
         std::vector<std::unique_ptr<Entity>> m_entities;
+
+        Zone_ID m_id;
 };
 
 #endif // ZONE_H_INCLUDED

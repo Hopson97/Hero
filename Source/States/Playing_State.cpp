@@ -86,6 +86,11 @@ namespace State
         m_mapGUI.update();
         if (m_mapGUI.shouldExit())
         {
+            if (m_mapGUI.getZoneID() != m_world.getZoneID())
+            {
+                std::cout << "not" << std::endl;
+                m_world.setZone(std::move(m_mapGUI.getZone()));
+            }
             //get zone
             //set zone
             m_playerState = Player_State::Roaming;

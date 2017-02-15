@@ -7,12 +7,6 @@
 #include "Zone/Zone.h"
 #include "GUI/Button.h"
 
- enum class Zone_ID
- {
-     Town,
-     Forest
- };
-
  class Map_Zone
  {
      public:

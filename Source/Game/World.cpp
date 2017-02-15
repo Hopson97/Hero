@@ -7,6 +7,8 @@
 #include "Player.h"
 #include "Zone/ZTown.h"
 
+#include "../Util/General_Maths.h"
+
 World::World(Player& player)
 :   m_p_player (&player)
 {
@@ -40,12 +42,14 @@ void World::addAction(std::unique_ptr<Action> action)
 
 float World::getDistanceToPlayer(const sf::Vector2f origin)
 {
-    auto xd     = m_p_player->getPosition().x - origin.x;
-    auto yd     = m_p_player->getPosition().y - origin.y;
-    auto result = std::sqrt(xd * xd + yd * yd);
-
-    return result;
+    return Maths::getDistance(m_p_player->getPosition(), origin);
 }
+
+Zone_ID World::getZoneID() const
+{
+    return m_zone->getID();
+}
+
 
 void World::executeActions()
 {
@@ -55,6 +59,11 @@ void World::executeActions()
     }
 
     m_actions.clear();
+}
+
+void World::setZone(std::unique_ptr<Zone> zone)
+{
+    m_zone = std::move(zone);
 }
 
 

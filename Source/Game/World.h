@@ -24,6 +24,10 @@ class World
 
         float getDistanceToPlayer(const sf::Vector2f origin);
 
+        Zone_ID getZoneID() const;
+
+        void setZone(std::unique_ptr<Zone> zone);
+
     private:
         void executeActions ();
 
