@@ -15,7 +15,11 @@ void World::input()
 
 void World::update(Game_Notice& notice, float dt)
 {
-    m_p_player->update(*this, dt);
+    if(!m_isPaused)
+    {
+        m_p_player->update(*this, dt);
+    }
+
     m_zone.update(*this, *m_p_player, dt);
 }
 
@@ -53,5 +57,19 @@ void World::executeActions()
     m_actions.clear();
 }
 
+void World::pause()
+{
+    m_isPaused = true;
+}
+
+void World::resume()
+{
+    m_isPaused = false;
+}
+
+bool World::isPaused() const
+{
+    return m_isPaused;
+}
 
 

@@ -4,6 +4,7 @@
 #include "../Display.h"
 
 #include "Entities/Blacksmith.h"
+#include "World.h"
 
 Zone::Zone()
 {
@@ -21,11 +22,15 @@ Zone::Zone()
 
 void Zone::update(World& world, Player& player, float dt)
 {
-    for (auto& entity : m_entities)
+    if (!world.isPaused())
     {
-        entity->update(world, player, dt);
+        for (auto& entity : m_entities)
+        {
+            entity->update(world, player, dt);
+        }
     }
 }
+
 
 
 void Zone::draw()

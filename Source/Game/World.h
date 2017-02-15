@@ -24,12 +24,18 @@ class World
 
         float getDistanceToPlayer(const sf::Vector2f origin);
 
+        void pause      ();
+        void resume     ();
+        bool isPaused   () const;
+
     private:
         void executeActions ();
 
         std::vector<std::unique_ptr<Action>> m_actions;
         Zone m_zone;
         Player* m_p_player = nullptr;
+
+        bool m_isPaused;
 
 
 };

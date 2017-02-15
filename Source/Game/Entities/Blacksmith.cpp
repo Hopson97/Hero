@@ -14,7 +14,7 @@ class Talk_Action : public Action
 
         void execute(World& world)
         {
-
+            world.pause();
         }
 
     private:
