@@ -95,8 +95,9 @@ void Player::draw()
     Display::draw(m_legs);
 }
 
-const sf::Vector2f& Player::getPosition() const
-{ return m_legs.getPosition(); }
+void Player::setPosition(const sf::Vector2f& pos) { m_legs.setPosition(pos); }
+
+const sf::Vector2f& Player::getPosition() const { return m_legs.getPosition(); }
 
 //Just some setters for the equpment tiers
 void Player::setEquipmentBody(Equipment::Tier tier)

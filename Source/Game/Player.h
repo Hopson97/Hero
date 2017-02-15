@@ -26,6 +26,8 @@ class Player
         void update (World& world, float dt);
         void draw   ();
 
+        void setPosition(const sf::Vector2f&);
+
         const sf::Vector2f& getPosition () const;
 
         void setEquipmentBody       (Equipment::Tier tier);

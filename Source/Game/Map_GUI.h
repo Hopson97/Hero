@@ -2,7 +2,9 @@
 #define MAP_GUI_H_INCLUDED
 
 #include <vector>
+#include <memory>
 
+#include "Zone/Zone.h"
 #include "GUI/Button.h"
 
  enum class Zone_ID
@@ -51,6 +53,9 @@ class Map_GUI
         bool shouldExit();
         void update();
         void draw();
+
+        Zone_ID getZoneID();
+        std::unique_ptr<Zone> getZone();
 
     private:
         std::vector<Map_Zone> m_zones;

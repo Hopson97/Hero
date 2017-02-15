@@ -50,11 +50,6 @@ void Map_GUI::update()
         }
     }
 
-
-    std::cout   << "X: "  << sf::Mouse::getPosition(Display::get()).x
-                << " Y: " << sf::Mouse::getPosition(Display::get()).y
-                << "\n";
-
     m_exitButton.update();
 }
 
@@ -65,6 +60,18 @@ void Map_GUI::draw()
     m_selector  .draw();
 }
 
+
+Zone_ID Map_GUI::getZoneID()
+{
+    return m_selector.getZone().getID();
+}
+
+/*
+std::unique_ptr<Zone> Map_GUI::getZone()
+{
+
+}
+*/
 
 Map_Zone::Map_Zone (Zone_ID id, const sf::Vector2f& pos, int lvlReq)
 :   m_id            (id)

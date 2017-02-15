@@ -15,6 +15,11 @@ class Entity
 
         virtual void draw   () = 0;
 
+        bool isDead() const;
+
+    private:
+        bool m_isDead = false;
+
 };
 
 #endif // ENTITY_H_INCLUDED

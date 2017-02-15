@@ -5,7 +5,7 @@
 #include <memory>
 
 #include "Entities/Entity.h"
-#include "Zone.h"
+#include "Zone/Zone.h"
 #include "Action/Action.h"
 
 class Player;
@@ -28,7 +28,7 @@ class World
         void executeActions ();
 
         std::vector<std::unique_ptr<Action>> m_actions;
-        Zone m_zone;
+        std::unique_ptr<Zone> m_zone;
         Player* m_p_player = nullptr;
 };
 

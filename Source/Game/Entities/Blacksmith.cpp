@@ -26,7 +26,7 @@ Blacksmith::Blacksmith()
 {
     m_sprite.setSize({255, 255});
     m_sprite.setTexture(&getResources().getTexture(Texture_ID::Entity_Blacksmith));
-    m_sprite.setPosition(5, 5);
+    m_sprite.setPosition(200, 5);
 
     for (int i = 0 ; i <= 2 ; i++)
     {

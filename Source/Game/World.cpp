@@ -5,10 +5,13 @@
 #include "Game_Notice.h"
 
 #include "Player.h"
+#include "Zone/ZTown.h"
 
 World::World(Player& player)
 :   m_p_player (&player)
-{ }
+{
+    m_zone = std::make_unique<ZTown>();
+}
 
 void World::input()
 {
@@ -19,12 +22,12 @@ void World::update(Game_Notice& notice, float dt)
 {
     m_p_player->update(*this, dt);
     executeActions();
-    m_zone.update(*this, *m_p_player, dt);
+    m_zone->update(*this, *m_p_player, dt);
 }
 
 void World::draw()
 {
-    m_zone.draw();
+    m_zone->draw();
     //Don't try to draw stuff before drawing the zone!
 
     m_p_player->draw();
