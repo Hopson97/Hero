@@ -3,6 +3,8 @@
 #include "../Resource_Managers/Resource_Holder.h"
 #include "../Display.h"
 
+#include "Entities/Blacksmith.h"
+
 Zone::Zone()
 {
     m_background.setSize({(float)Display::get().getSize().x,

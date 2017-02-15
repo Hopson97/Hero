@@ -23,13 +23,19 @@ Sword::Sword(Equippable& sword)
     }
     m_slashAnimation.addFrame({0, 0, 50, 50}, 0.15);
     m_slashEffect.setTextureRect(m_slashAnimation.getFrame(0));
+
+    m_swordSwingSound.setBuffer(getResources().getSound(Sound_ID::Sword1));
 }
 
 void Sword::slash()
 {
-    m_p_sword->setTextureRect(m_slashAnimation.getFrame(1));
-    m_isSwinging = true;
-    m_slashTimer.restart();
+    if (!m_isSwinging)
+    {
+        m_p_sword->setTextureRect(m_slashAnimation.getFrame(1));
+        m_isSwinging = true;
+        m_slashTimer.restart();
+        m_swordSwingSound.play();
+    }
 }
 
 void Sword::draw()

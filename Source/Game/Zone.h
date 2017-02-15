@@ -5,9 +5,11 @@
 #include <memory>
 #include <vector>
 
-#include "Entities/Blacksmith.h"
+#include "Entities/Entity.h"
 
 class Resource_Holder;
+class World;
+class Player;
 
 class Zone
 {
@@ -22,8 +24,6 @@ class Zone
     private:
         sf::RectangleShape m_background;
         sf::RectangleShape m_shakeGround;
-
-        Blacksmith m_blacksmith;
 
         std::vector<std::unique_ptr<Entity>> m_entities;
 };

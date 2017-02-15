@@ -5,6 +5,22 @@
 
 #include "../World.h"
 
+class Talk_Action : public Action
+{
+    public:
+        Talk_Action(std::string message)
+        :   m_message (std::move(message))
+        {}
+
+        void execute(World& world)
+        {
+
+        }
+
+    private:
+        std::string m_message;
+};
+
 Blacksmith::Blacksmith()
 {
     m_sprite.setSize({255, 255});
@@ -22,6 +38,8 @@ Blacksmith::Blacksmith()
 void Blacksmith::update(World& world, Player& player, float dt)
 {
     m_sprite.setTextureRect(m_animation.getFrame());
+
+
 }
 
 void Blacksmith::draw()

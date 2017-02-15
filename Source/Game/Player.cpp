@@ -50,7 +50,7 @@ Player::Player()
 void Player::input()
 {
     static sf::Clock c;
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !m_sword.isSwinging() && c.getElapsedTime().asSeconds() > 0.3f)
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !m_sword.isSwinging() && c.getElapsedTime().asSeconds() > 0.5f)
     {
         m_sword.slash();
         c.restart();

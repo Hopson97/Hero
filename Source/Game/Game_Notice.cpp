@@ -9,10 +9,10 @@ Game_Notice::Game_Notice()
 {
     m_text.setFont(getResources().getFont(Font_ID::RS));
     m_text.setCharacterSize(20);
-    m_text.setPosition(10, 6);
+    m_text.setPosition(Display::WIDTH / 2, 10);
 
     m_sprite.setSize({250, 28});
-    m_sprite.setPosition(5, 5);
+    m_sprite.setPosition(Display::WIDTH / 2, 10);
     m_sprite.setOutlineThickness(2);
     m_sprite.setOutlineColor(sf::Color::Black);
     m_sprite.setFillColor({50, 255, 255, 190});

@@ -1,9 +1,12 @@
 #ifndef WORLD_H_INCLUDED
 #define WORLD_H_INCLUDED
 
-#include "Entities/Entity.h"
+#include <vector>
+#include <memory>
 
-#include "../Game/Zone.h"
+#include "Entities/Entity.h"
+#include "Zone.h"
+#include "Action/Action.h"
 
 class Player;
 class Game_Notice;
@@ -11,13 +14,24 @@ class Game_Notice;
 class World
 {
     public:
-        World();
+        World(Player& player);
 
-        void update (Player& player, Game_Notice& notice, float dt);
+        void input  ();
+        void update (Game_Notice& notice, float dt);
         void draw   ();
 
+        void addAction(std::unique_ptr<Action> action);
+
+        float getDistanceToPlayer(const sf::Vector2f origin);
+
     private:
+        void executeActions ();
+
+        std::vector<std::unique_ptr<Action>> m_actions;
         Zone m_zone;
+        Player* m_p_player = nullptr;
+
+
 };
 
 #endif // WORLD_H_INCLUDED

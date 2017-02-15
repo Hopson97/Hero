@@ -1,6 +1,8 @@
 #ifndef SWORD_H_INCLUDED
 #define SWORD_H_INCLUDED
 
+#include <SFML/Audio.hpp>
+
 #include "Equipment_Data.h"
 #include "../../Animation.h"
 
@@ -30,6 +32,8 @@ class Sword
         Equippable* m_p_sword;
         bool m_isSwinging = false;
         sf::Clock m_slashTimer;
+
+        sf::Sound m_swordSwingSound;
 };
 
 #endif // SWORD_H_INCLUDED
