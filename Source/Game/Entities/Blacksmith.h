@@ -8,7 +8,7 @@ class Blacksmith : public Entity
     public:
         Blacksmith();
 
-        void update (World& world, float dt) override;
+        void update (World& world, Player& player, float dt) override;
         void draw   () override;
 
     private:

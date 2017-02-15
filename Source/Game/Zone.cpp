@@ -17,11 +17,11 @@ Zone::Zone()
     m_entities.push_back(std::make_unique<Blacksmith>());
 }
 
-void Zone::update(World& world, float dt)
+void Zone::update(World& world, Player& player, float dt)
 {
     for (auto& entity : m_entities)
     {
-        entity->update(world, dt);
+        entity->update(world, player, dt);
     }
 }
 

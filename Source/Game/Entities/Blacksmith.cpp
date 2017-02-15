@@ -19,7 +19,7 @@ Blacksmith::Blacksmith()
     m_sprite.setTextureRect(m_animation.getFrame());
 }
 
-void Blacksmith::update(World& world, float dt)
+void Blacksmith::update(World& world, Player& player, float dt)
 {
     m_sprite.setTextureRect(m_animation.getFrame());
 }

@@ -14,7 +14,7 @@ class Zone
     public:
         Zone();
 
-        void update(World& world, float dt);
+        void update(World& world, Player& player, float dt);
 
         void draw();
 

@@ -14,10 +14,10 @@
 
 class Resource_Holder;
 
-class Player : public Entity
+class Player
 {
     constexpr static int BODY_SIZE  = 100;
-    constexpr static int SPEED      = 1.3;
+    constexpr static int SPEED      = 1.6;
 
     public:
         Player();

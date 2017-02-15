@@ -11,7 +11,7 @@ World::World()
 
 void World::update(Player& player, Game_Notice& notice, float dt)
 {
-    m_zone.update(*this, dt);
+    m_zone.update(*this, player, dt);
 }
 
 void World::draw()

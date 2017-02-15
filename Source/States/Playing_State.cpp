@@ -15,9 +15,7 @@ namespace State
     }
 
     void Playing::input(const sf::Event& e)
-    {
-
-    }
+    { }
 
     void Playing::input()
     {

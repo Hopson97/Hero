@@ -6,13 +6,15 @@
 #include "../../Animation.h"
 
 class World;
+class Player;
 
 class Entity
 {
     public:
-        virtual void update (World& world, float dt) = 0;
+        virtual void update (World& world, Player& player, float dt) = 0;
 
         virtual void draw   () = 0;
+
 };
 
 #endif // ENTITY_H_INCLUDED
