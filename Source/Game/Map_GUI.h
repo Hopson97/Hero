@@ -38,7 +38,7 @@
          const Map_Zone& getZone() const;
 
      private:
-         sf::CircleShape m_selector;
+         sf::CircleShape m_circle;
          const Map_Zone* m_p_zone = nullptr;
  };
 
