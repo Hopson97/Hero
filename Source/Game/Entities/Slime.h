@@ -2,6 +2,7 @@
 #define SLIME_H_INCLUDED
 
 #include "Entity.h"
+#include "../../Animation.h"
 
 class Slime : public Entity
 {
@@ -13,7 +14,7 @@ class Slime : public Entity
         void onUpdate (World& world, Player& player, float dt) override;
 
     private:
-
+        Animation m_animation;
 };
 
 #endif // SLIME_H_INCLUDED
