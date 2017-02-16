@@ -8,11 +8,9 @@ class Blacksmith : public Entity
     public:
         Blacksmith();
 
-        void update (World& world, Player& player, float dt) override;
-        void draw   () override;
+        void onUpdate (World& world, Player& player, float dt) override;
 
     private:
-        sf::RectangleShape  m_sprite;
         Animation           m_animation;
 };
 

@@ -77,8 +77,8 @@ namespace State
 
     void Playing::roamDraw()
     {
-        m_world.draw    ();
-        m_notice.draw   ();
+        m_world.draw ();
+        m_notice.draw();
     }
 
     void Playing::zoneSwitchUpdate(float dt)

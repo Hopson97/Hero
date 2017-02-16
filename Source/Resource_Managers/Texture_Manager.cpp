@@ -17,6 +17,7 @@ Texture_Manager::Texture_Manager()
 
 
     registerResource(Texture_ID::Entity_Blacksmith, path + "Black_Smith.png");
+    registerResource(Texture_ID::Entity_Slime, path + "Slime.png");
 
 
     registerResource(Texture_ID::Zone_Village, path + "Zone_1.png");

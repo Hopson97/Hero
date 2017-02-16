@@ -8,7 +8,7 @@
 #include "../Game/Player.h"
 #include "../Game/Game_Notice.h"
 #include "../Game/World.h"
-#include "../Game/Map_GUI.h"
+#include "../Game/Map/Map_GUI.h"
 
 enum class Player_State
 {

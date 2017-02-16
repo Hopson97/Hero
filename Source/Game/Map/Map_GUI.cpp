@@ -1,11 +1,11 @@
 #include "Map_GUI.h"
 
-#include "../Display.h"
-#include "../Resource_Managers/Resource_Holder.h"
-#include "../Util/General_Maths.h"
+#include "../../Display.h"
+#include "../../Resource_Managers/Resource_Holder.h"
+#include "../../Util/General_Maths.h"
 
-#include "Zone/ZTown.h"
-#include "Zone/ZForest.h"
+#include "../Zone/ZTown.h"
+#include "../Zone/ZForest.h"
 
 #include <iostream>
 
@@ -81,51 +81,3 @@ std::unique_ptr<Zone> Map_GUI::getZone()
             return std::make_unique<ZForest>();
     }
 }
-
-
-Map_Zone::Map_Zone (Zone_ID id, const sf::Vector2f& pos, int lvlReq)
-:   m_id            (id)
-,   m_position      (pos)
-,   m_levelRequied  (lvlReq)
-{ }
-
-Zone_ID Map_Zone::getID() const
-{
-    return m_id;
-}
-
-sf::Vector2f Map_Zone::getPos() const
-{
-    return m_position;
-}
-
-int Map_Zone::getLevelReq() const
-{
-    return m_levelRequied;
-}
-
-
-Zone_Selector::Zone_Selector()
-:   m_circle  (50)
-{
-    m_circle.setFillColor({0, 0, 0, 0});
-    m_circle.setOutlineThickness(3);
-    m_circle.setOutlineColor({255, 0, 0, 150});
-}
-
-void Zone_Selector::moveTo(const Map_Zone& zone)
-{
-    m_p_zone = &zone;
-    m_circle.setPosition(zone.getPos());
-}
-
-void Zone_Selector::draw()
-{
-    Display::draw(m_circle);
-}
-
-const Map_Zone& Zone_Selector::getZone() const
-{
-    return *m_p_zone;
-}
-

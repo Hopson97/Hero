@@ -11,14 +11,31 @@ class Player;
 class Entity
 {
     public:
-        virtual void update (World& world, Player& player, float dt) = 0;
+        Entity(const sf::Texture& texture,
+               const sf::Vector2f& size,
+               const sf::Vector2f& position,
+               bool center = false);
 
-        virtual void draw   () = 0;
+        void update(World& world, Player& player, float dt);
+        virtual void onUpdate (World& world, Player& player, float dt) = 0;
+
+        void draw ();
 
         bool isDead() const;
 
+        void movePosition(const sf::Vector2f& vec);
+
+    protected:
+        void setTextureRect(const sf::IntRect& rect);
+
+        const sf::RectangleShape& getSprite() const;
+
+        sf::Vector2f m_position;
+
     private:
         bool m_isDead = false;
+
+        sf::RectangleShape m_sprite;
 
 };
 
