@@ -29,12 +29,12 @@ void Entity::update(World& world, Player& player, float dt)
     switch (m_state)
     {
         case Entity_State::Dying:
+            break;
+
         case Entity_State::Walking:
-            m_sprite.setFillColor(sf::Color::White);
             break;
 
         case Entity_State::Damaged:
-            m_sprite.setFillColor(sf::Color::Red);
             break;
     }
 

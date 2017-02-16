@@ -14,7 +14,9 @@ class Slime : public Entity
         void onUpdate (World& world, Player& player, float dt) override;
 
     private:
+        Animation* m_p_currentAnimation;
         Animation m_animation;
+        Animation m_damagedAnimation;
 };
 
 #endif // SLIME_H_INCLUDED
