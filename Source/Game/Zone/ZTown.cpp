@@ -14,6 +14,8 @@ void ZTown::onUpdate(World& world, Player& player, float dt)
 {
     if (player.getPosition().x < 200)
         player.setPosition({200, player.getPosition().y});
+
+
 }
 
 void ZTown::onDraw()

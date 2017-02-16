@@ -12,6 +12,9 @@
 
 #include "Entities/Entity.h"
 
+#include "Health_Bar.h"
+#include "Health.h"
+
 class Resource_Holder;
 
 class Player
@@ -42,6 +45,8 @@ class Player
 
         const Sword& getSwordEntity     () const;
 
+        void hit(int dmg);
+
     private:
         void moveLegs (float dt);
 
@@ -52,6 +57,9 @@ class Player
         Animation m_legsAnimation;
 
         Sword m_sword;
+
+        Health m_health;
+        Health_Bar m_healthBar;
 };
 
 #endif // PLAYER_H_INCLUDED

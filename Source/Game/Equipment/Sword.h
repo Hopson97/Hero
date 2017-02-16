@@ -25,6 +25,8 @@ class Sword
 
         sf::FloatRect getBounds() const;
 
+        const Equippable& getEquipment() const;
+
     private:
         sf::RectangleShape m_slashEffect;
 

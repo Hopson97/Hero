@@ -27,7 +27,9 @@ enum class Texture_ID
 
     GUI_Exit_Button,
 
-    World_Map
+    World_Map,
+
+    Hearts,
 };
 
 class Texture_Manager : public Resource_Manager<sf::Texture, Texture_ID>

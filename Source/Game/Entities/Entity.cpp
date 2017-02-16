@@ -5,8 +5,10 @@
 Entity::Entity(const sf::Texture& texture,
                const sf::Vector2f& size,
                const sf::Vector2f& position,
-               bool center)
-:   m_position  (position)
+               bool center,
+               int health)
+:   health      (health)
+,   m_position  (position)
 {
     m_sprite.setTexture(&texture);
     m_sprite.setSize(size);
@@ -21,9 +23,21 @@ Entity::Entity(const sf::Texture& texture,
 
 void Entity::update(World& world, Player& player, float dt)
 {
-    for(auto& comp : m_components)
+    if (m_state != Entity_State::Dying)
     {
-        comp->update(dt, player);
+        for(auto& comp : m_components)
+        {
+            comp->update(dt, player);
+        }
+    }
+    else
+    {
+        m_deathState -= 200 * dt;
+        m_sprite.setFillColor({m_deathState, m_deathState, m_deathState, m_deathState});
+        if (m_deathState < 50)
+        {
+            m_isDead = true;
+        }
     }
 
     switch (m_state)
@@ -35,6 +49,17 @@ void Entity::update(World& world, Player& player, float dt)
             break;
 
         case Entity_State::Damaged:
+            break;
+
+        case Entity_State::Poll_Death:
+            if (health.getValue() <= 0)
+            {
+                m_state = Entity_State::Dying;
+            }
+            else
+            {
+                m_state = Entity_State::Walking;
+            }
             break;
     }
 

@@ -19,7 +19,7 @@ namespace Equipment
                 addToDatabase(primitiveData, Type::Body,    0, 0, getTxr(Texture_ID::Player_Body_Shirt  ));
                 addToDatabase(primitiveData, Type::Head,    0, 0, getTxr(Texture_ID::Player_Head_None   ));
                 addToDatabase(primitiveData, Type::Shield,  0, 0, getTxr(Texture_ID::Player_Shield_Wood ));
-                addToDatabase(primitiveData, Type::Sword,   0, 0, getTxr(Texture_ID::Player_Sword_Wood  ));
+                addToDatabase(primitiveData, Type::Sword,   3, 0, getTxr(Texture_ID::Player_Sword_Wood  ));
             }
 
             const Data& getPrimData (int tier) const

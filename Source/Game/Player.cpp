@@ -7,7 +7,9 @@
 #include "../Resource_Managers/Resource_Holder.h"
 
 Player::Player()
-:   m_sword         (m_equipment[(int)Equipment::Type::Sword])
+:   m_sword     (m_equipment[(int)Equipment::Type::Sword])
+,   m_health    (25)
+,   m_healthBar (m_health)
 {
     m_legs.setPosition(500, 500);
 
@@ -65,6 +67,7 @@ void Player::input()
 void Player::update(World& world, float dt)
 {
     m_sword.update();
+    m_healthBar.update();
 
     moveLegs(dt);
     for (auto& eq : m_equipment)
@@ -93,6 +96,8 @@ void Player::draw()
         eq.draw();
     }
     Display::draw(m_legs);
+
+    m_healthBar.draw();
 }
 
 void Player::setPosition(const sf::Vector2f& pos) { m_legs.setPosition(pos); }
@@ -157,3 +162,9 @@ void Player::moveLegs(float dt)
         m_legs.setTextureRect({0, 0, 50, 40});
     }
 }
+
+void Player::hit(int dmg)
+{
+    m_health.damage(dmg);
+}
+

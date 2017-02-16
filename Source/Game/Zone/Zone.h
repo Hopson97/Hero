@@ -33,6 +33,7 @@ class Zone
         virtual void onDraw     () = 0;
 
         int checkForDeadEntities();
+        bool entityDamaged      ();
 
 
     private:

@@ -22,6 +22,7 @@ namespace Component
         {
             if (m_p_entity->getSprite().getGlobalBounds().intersects(sword.getBounds()))
             {
+                m_p_entity->health.damage(sword.getEquipment().getData().getDamageBonus());
                 m_p_entity->setState(Entity_State::Damaged);
                 m_invincibilityTimer.restart();
             }
@@ -38,7 +39,7 @@ namespace Component
 
             if (m_invincibilityTimer.getElapsedTime().asSeconds() > m_invincibilityTime)
             {
-                m_p_entity->setState(Entity_State::Walking);
+                m_p_entity->setState(Entity_State::Poll_Death);
             }
         }
     }

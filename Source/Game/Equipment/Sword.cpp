@@ -93,5 +93,12 @@ sf::FloatRect Sword::getBounds() const
     return m_slashEffect.getGlobalBounds();
 }
 
+const Equippable& Sword::getEquipment() const
+{
+    return *m_p_sword;
+}
+
+
+
 
 

@@ -66,6 +66,19 @@ int Zone::checkForDeadEntities()
     return count;
 }
 
+bool Zone::entityDamaged()
+{
+    for (auto& entity : m_entities)
+    {
+        if (entity->getState() == Entity_State::Damaged)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 
 void Zone::addEntity(std::unique_ptr<Entity> entity )
 {

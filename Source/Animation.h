@@ -28,7 +28,7 @@ class Animation
         bool isOnFinalFrame() const;
         void reset();
 
-
+        int getNumFrames() { return m_frames.size(); }
 
     private:
         std::vector<Frame> m_frames;

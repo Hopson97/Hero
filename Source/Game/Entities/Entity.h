@@ -7,6 +7,7 @@
 #include <memory>
 
 #include "../Component/Component.h"
+#include "../Health.h"
 
 class World;
 class Player;
@@ -15,6 +16,7 @@ enum class Entity_State
 {
     Walking,
     Damaged,
+    Poll_Death,
     Dying
 };
 
@@ -24,7 +26,8 @@ class Entity
         Entity(const sf::Texture& texture,
                const sf::Vector2f& size,
                const sf::Vector2f& position,
-               bool center = false);
+               bool center = false,
+               int health  = 1);
 
         void update(World& world, Player& player, float dt);
         virtual void onUpdate (World& world, Player& player, float dt) = 0;
@@ -43,6 +46,7 @@ class Entity
 
         const sf::RectangleShape& getSprite() const;
 
+        Health health;
     protected:
         void addComponent(std::unique_ptr<Component::CBase> comp);
 
@@ -58,6 +62,8 @@ class Entity
         Entity_State m_state = Entity_State::Walking;
 
         std::vector<std::unique_ptr<Component::CBase>> m_components;
+
+        float m_deathState = 255;
 
 };
 

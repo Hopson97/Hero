@@ -27,4 +27,7 @@ Texture_Manager::Texture_Manager()
     registerResource(Texture_ID::World_Map, path + "Map.png");
 
     registerResource(Texture_ID::GUI_Exit_Button, path + "Exit_BUtton.png");
+
+    registerResource(Texture_ID::Hearts, path + "hearts.png");
+
 }
