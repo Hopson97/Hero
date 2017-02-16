@@ -23,7 +23,6 @@ Zone::Zone(const sf::Texture& background, Zone_ID id)
 
 void Zone::update(World& world, Player& player, float dt)
 {
-    std::cout << "Upd" << std::endl;
     for (auto& entity : m_entities)
     {
         entity->update(world, player, dt);

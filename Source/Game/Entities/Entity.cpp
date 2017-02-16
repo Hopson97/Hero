@@ -32,20 +32,18 @@ void Entity::update(World& world, Player& player, float dt)
 }
 
 
-bool Entity::isDead() const
-{
-    return m_isDead;
-}
 
 void Entity::draw()
 {
     Display::draw(m_sprite);
 }
 
+bool Entity::isDead() const { return m_isDead; }
+
 void Entity::movePosition   (const sf::Vector2f& vec)   { m_position += vec;                }
 void Entity::setTextureRect (const sf::IntRect& rect)   { m_sprite.setTextureRect(rect);    }
-const sf::RectangleShape& Entity::getSprite() const     { return m_sprite;                  }
-const Vector2f& Entity::getPosition() const             { return m_position;                }
+const sf::RectangleShape& Entity::getSprite ()  const   { return m_sprite;                  }
+const sf::Vector2f& Entity::getPosition     ()  const   { return m_position;                }
 
 void Entity::addComponent(std::unique_ptr<Component::CBase> comp)
 {
