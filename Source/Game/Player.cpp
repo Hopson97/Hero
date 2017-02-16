@@ -121,6 +121,12 @@ const Equippable& Player::getHeadgear   () const { return m_equipment[(int)Equip
 const Equippable& Player::getSword      () const { return m_equipment[(int)Equipment::Type::Sword];     }
 const Equippable& Player::getShield     () const { return m_equipment[(int)Equipment::Type::Shield];    }
 
+const Sword& Player::getSwordEntity() const
+{
+    return m_sword;
+}
+
+
 void Player::moveLegs(float dt)
 {
     if (sf::Mouse::getPosition(Display::get()).x > m_legs.getPosition().x)

@@ -23,6 +23,8 @@ class Sword
 
         void upgrade (Equipment::Tier tier);
 
+        sf::FloatRect getBounds() const;
+
     private:
         sf::RectangleShape m_slashEffect;
 

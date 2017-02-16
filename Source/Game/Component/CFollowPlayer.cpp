@@ -16,15 +16,27 @@ namespace Component
 
     void CFollow_Player::update(float dt, Player& player)
     {
-        sf::Vector2f vect (player.getPosition().x - m_p_entity->getPosition().x,
-                           player.getPosition().y - m_p_entity->getPosition().y);
-
-        auto dist = Maths::getDistance(player.getPosition(), m_p_entity->getPosition());
-        Maths::normaliseVector(vect, dist);
-
-        if (dist > m_minimumDistance)
+        if (m_p_entity->getState() == Entity_State::Walking)
         {
-            m_p_entity->movePosition({vect.x * dt * m_entitySpeed, vect.y * dt * m_entitySpeed});
+            sf::Vector2f vect (player.getPosition().x - m_p_entity->getPosition().x,
+                               player.getPosition().y - m_p_entity->getPosition().y);
+
+            auto dist = Maths::getDistance(player.getPosition(), m_p_entity->getPosition());
+            Maths::normaliseVector(vect, dist);
+
+            if (dist > m_minimumDistance)
+            {
+                m_p_entity->movePosition({vect.x * dt * m_entitySpeed, vect.y * dt * m_entitySpeed});
+            }
+
+            if (vect.x > 0)
+            {
+                m_p_entity->flip(1);
+            }
+            else
+            {
+                m_p_entity->flip(-1);
+            }
         }
     }
 }

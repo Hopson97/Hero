@@ -88,4 +88,10 @@ void Sword::upgrade(Equipment::Tier tier)
     }
 }
 
+sf::FloatRect Sword::getBounds() const
+{
+    return m_slashEffect.getGlobalBounds();
+}
+
+
 

@@ -15,8 +15,10 @@ ZForest::ZForest()
 
 void ZForest::onUpdate(World& world, Player& player, float dt)
 {
-    checkForDeadEntities();
-    addEnemy();
+    m_enemyCount -= checkForDeadEntities();
+
+    //if (m_enemyCount < 5)
+        addEnemy();
 }
 
 void ZForest::onDraw()
@@ -26,5 +28,6 @@ void ZForest::onDraw()
 
 void ZForest::addEnemy()
 {
+    m_enemyCount++;
     addEntity(std::make_unique<Slime>());
 }

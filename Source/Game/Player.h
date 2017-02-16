@@ -40,6 +40,8 @@ class Player
         const Equippable& getSword      () const;
         const Equippable& getShield     () const;
 
+        const Sword& getSwordEntity     () const;
+
     private:
         void moveLegs (float dt);
 

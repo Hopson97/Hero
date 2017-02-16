@@ -11,6 +11,13 @@
 class World;
 class Player;
 
+enum class Entity_State
+{
+    Walking,
+    Damaged,
+    Dying
+};
+
 class Entity
 {
     public:
@@ -29,11 +36,17 @@ class Entity
         void movePosition(const sf::Vector2f& vec);
         const sf::Vector2f& getPosition() const;
 
+        void flip(int scaleFactor);
+
+        void setState(Entity_State state);
+        Entity_State getState() const;
+
+        const sf::RectangleShape& getSprite() const;
+
     protected:
         void addComponent(std::unique_ptr<Component::CBase> comp);
 
         void setTextureRect(const sf::IntRect& rect);
-        const sf::RectangleShape& getSprite() const;
 
 
     private:
@@ -41,6 +54,8 @@ class Entity
 
         sf::RectangleShape m_sprite;
         sf::Vector2f m_position;
+
+        Entity_State m_state = Entity_State::Walking;
 
         std::vector<std::unique_ptr<Component::CBase>> m_components;
 
