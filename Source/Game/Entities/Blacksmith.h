@@ -3,6 +3,8 @@
 
 #include "Entity.h"
 
+#include "../../Animation.h"
+
 class Blacksmith : public Entity
 {
     public:
@@ -11,7 +13,7 @@ class Blacksmith : public Entity
         void onUpdate (World& world, Player& player, float dt) override;
 
     private:
-        Animation           m_animation;
+        Animation m_animation;
 };
 
 #endif // BLACKSMITH_H_INCLUDED

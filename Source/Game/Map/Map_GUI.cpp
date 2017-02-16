@@ -80,4 +80,5 @@ std::unique_ptr<Zone> Map_GUI::getZone()
         case Zone_ID::Forest:
             return std::make_unique<ZForest>();
     }
+    return nullptr;
 }

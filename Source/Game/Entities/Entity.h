@@ -3,7 +3,10 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "../../Animation.h"
+#include <vector>
+#include <memory>
+
+#include "../Component/Component.h"
 
 class World;
 class Player;
@@ -24,18 +27,22 @@ class Entity
         bool isDead() const;
 
         void movePosition(const sf::Vector2f& vec);
+        const sf::Vector2f& getPosition() const;
 
     protected:
-        void setTextureRect(const sf::IntRect& rect);
+        void addComponent(std::unique_ptr<Component::CBase> comp);
 
+        void setTextureRect(const sf::IntRect& rect);
         const sf::RectangleShape& getSprite() const;
 
-        sf::Vector2f m_position;
 
     private:
         bool m_isDead = false;
 
         sf::RectangleShape m_sprite;
+        sf::Vector2f m_position;
+
+        std::vector<std::unique_ptr<Component::CBase>> m_components;
 
 };
 

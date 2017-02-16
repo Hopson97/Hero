@@ -22,8 +22,8 @@ void Blacksmith::onUpdate(World& world, Player& player, float dt)
 {
     setTextureRect(m_animation.getFrame());
 
-    if (world.getDistanceToPlayer({m_position.x + getSprite().getLocalBounds().width / 1.2f,
-                                   m_position.y + getSprite().getLocalBounds().height / 1.2f}) < 50 )
+    if (world.getDistanceToPlayer({getPosition().x + getSprite().getLocalBounds().width / 1.2f,
+                                   getPosition().y + getSprite().getLocalBounds().height / 1.2f}) < 50 )
     {
 
     }

@@ -22,6 +22,11 @@ Entity::Entity(const sf::Texture& texture,
 
 void Entity::update(World& world, Player& player, float dt)
 {
+    for(auto& comp : m_components)
+    {
+        comp->update(dt, player);
+    }
+
     onUpdate(world, player, dt);
     m_sprite.setPosition(m_position);
 }
@@ -37,20 +42,14 @@ void Entity::draw()
     Display::draw(m_sprite);
 }
 
-void Entity::movePosition(const sf::Vector2f& vec)
-{
-    m_position += vec;
-}
+void Entity::movePosition   (const sf::Vector2f& vec)   { m_position += vec;                }
+void Entity::setTextureRect (const sf::IntRect& rect)   { m_sprite.setTextureRect(rect);    }
+const sf::RectangleShape& Entity::getSprite() const     { return m_sprite;                  }
+const Vector2f& Entity::getPosition() const             { return m_position;                }
 
-void Entity::setTextureRect(const sf::IntRect& rect)
+void Entity::addComponent(std::unique_ptr<Component::CBase> comp)
 {
-    m_sprite.setTextureRect(rect);
+    m_components.push_back(std::move(comp));
 }
-
-const sf::RectangleShape& Entity::getSprite() const
-{
-    return m_sprite;
-}
-
 
 

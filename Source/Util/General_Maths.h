@@ -8,12 +8,19 @@
 namespace Maths
 {
     template<typename T, typename K>
-    float getDistance(sf::Vector2<T> v1, sf::Vector2<K> v2)
+    float getDistance(const sf::Vector2<T>& v1, const sf::Vector2<K>& v2)
     {
         int xd = v1.x - v2.x;
         int yd = v1.y - v2.y;
 
         return std::sqrt(xd * xd + yd * yd);
+    }
+
+    template<typename T, typename K>
+    void normaliseVector(sf::Vector2<T>& vect, K dist)
+    {
+        vect.x /= dist;
+        vect.y /= dist;
     }
 }
 
