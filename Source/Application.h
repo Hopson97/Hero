@@ -1,6 +1,8 @@
 #ifndef APPLICATION_H_INCLUDED
 #define APPLICATION_H_INCLUDED
 
+#include <SFML/Audio/Music.hpp>
+
 #include <memory>
 #include <stack>
 
@@ -19,6 +21,10 @@ class Application
 
     private:
         std::stack<std::unique_ptr<State::State_Base>> m_states;
+
+        sf::Music m_music;
+
+
 };
 
 #endif // APPLICATION_H_INCLUDED

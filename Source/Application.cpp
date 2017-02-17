@@ -37,6 +37,11 @@ Application::Application()
     Display     ::init      ("Hero - V0.1");
     Random      ::init      ();
 
+    m_music.setLoop(true);
+    m_music.openFromFile("Res/Music/HOC.ogg");
+    m_music.setVolume(10);
+    m_music.play();
+
     //pushState(std::make_unique<State::Splash_Screen>(*this));
     pushState(std::make_unique<State::Playing>(*this));
 }

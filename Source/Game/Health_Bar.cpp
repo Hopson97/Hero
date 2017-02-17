@@ -36,7 +36,7 @@ void Health_Bar::update()
     m_sprite.setTextureRect(m_stages.getFrame(val));
 
     if (m_isPopped &&
-        m_popTimer.getElapsedTime().asSeconds() > 0.2)
+        m_popTimer.getElapsedTime().asSeconds() > 0.3)
     {
         m_isPopped = false;
         m_sprite.setScale(1, 1);

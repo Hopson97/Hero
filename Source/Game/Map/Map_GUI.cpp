@@ -31,7 +31,11 @@ Map_GUI::Map_GUI()
 
     m_zones.emplace_back(Zone_ID::Beach,
                          sf::Vector2f{455, 110},
-                         5);
+                         4);
+
+    m_zones.emplace_back(Zone_ID::Mountains,
+                         sf::Vector2f{908, 40},
+                         9);
 
     m_selector.moveTo(m_zones.front());
 }

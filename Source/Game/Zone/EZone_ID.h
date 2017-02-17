@@ -5,7 +5,8 @@
  {
      Town,
      Forest,
-     Beach
+     Beach,
+     Mountains,
  };
 
 #endif // EZONE_ID_H_INCLUDED
