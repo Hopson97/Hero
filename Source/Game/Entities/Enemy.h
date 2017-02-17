@@ -22,7 +22,7 @@ class Enemy : public Entity
 
         ~Enemy();
 
-        virtual void onUpdate (World& world, Player& player, float dt) override;
+        virtual void onUpdate (Zone& zone, Player& player, float dt) override;
 
     private:
         void playHitSound() override;

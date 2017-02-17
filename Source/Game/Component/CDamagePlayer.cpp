@@ -2,6 +2,8 @@
 
 #include "../../Util/General_Maths.h"
 #include "../Player.h"
+#include "../Entities/Entity.h"
+
 
 namespace Component
 {

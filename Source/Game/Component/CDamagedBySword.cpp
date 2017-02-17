@@ -4,6 +4,8 @@
 
 #include "../Player.h"
 
+#include "../Entities/Entity.h"
+
 namespace Component
 {
     CDamaged_By_Sword::CDamaged_By_Sword(Entity& entity, float invincibilityTime)

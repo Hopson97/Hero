@@ -26,7 +26,7 @@ void Zone::update(World& world, Player& player, float dt)
 {
     for (auto& entity : m_entities)
     {
-        entity->update(world, player, dt);
+        entity->update(*this, player, dt);
     }
     onUpdate(world, player, dt);
 }

@@ -7,6 +7,9 @@
 #include "../../Util/Random.h"
 #include "../../Display.h"
 
+#include "../Entities/Entity.h"
+
+
 namespace Component
 {
     CFollow_Player_AI::CFollow_Player_AI(Entity& entity, int minDist, int speed, int minDistToFollow)

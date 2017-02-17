@@ -10,7 +10,7 @@
 #include "../Health.h"
 #include "../Loot.h"
 
-class World;
+class Zone;
 class Player;
 
 enum class Entity_State
@@ -31,8 +31,8 @@ class Entity
                int health  = 1,
                const Loot& loot = {0, 0, 0, 0});
 
-        void update(World& world, Player& player, float dt);
-        virtual void onUpdate (World& world, Player& player, float dt) = 0;
+        void update(Zone& zone, Player& player, float dt);
+        virtual void onUpdate (Zone& zone, Player& player, float dt) = 0;
 
         void draw ();
 

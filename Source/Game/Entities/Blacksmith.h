@@ -10,7 +10,7 @@ class Blacksmith : public Entity
     public:
         Blacksmith();
 
-        void onUpdate (World& world, Player& player, float dt) override;
+        void onUpdate (Zone& zone, Player& player, float dt) override;
 
     private:
         Animation m_animation;

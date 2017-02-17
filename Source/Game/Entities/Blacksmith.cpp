@@ -5,7 +5,7 @@
 #include "../../Display.h"
 #include "../../Resource_Managers/Resource_Holder.h"
 
-#include "../World.h"
+#include "../Zone/Zone.h"
 
 Blacksmith::Blacksmith()
 :   Entity  (getResources().getTexture(Texture_ID::Entity_Blacksmith), {255, 255}, {200, 5})
@@ -18,14 +18,14 @@ Blacksmith::Blacksmith()
     setTextureRect(m_animation.getFrame());
 }
 
-void Blacksmith::onUpdate(World& world, Player& player, float dt)
+void Blacksmith::onUpdate(Zone& zone, Player& player, float dt)
 {
     setTextureRect(m_animation.getFrame());
-
+/*
     if (world.getDistanceToPlayer({getPosition().x + getSprite().getLocalBounds().width / 1.2f,
                                    getPosition().y + getSprite().getLocalBounds().height / 1.2f}) < 50 )
     {
 
     }
-
+*/
 }

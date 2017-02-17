@@ -20,7 +20,7 @@ Enemy::~Enemy()
 
 }
 
-void Enemy::onUpdate(World& world, Player& player, float dt)
+void Enemy::onUpdate(Zone& zone, Player& player, float dt)
 {
     switch(getState())
     {

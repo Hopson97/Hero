@@ -10,14 +10,13 @@
 #include "Equipment/Equippable.h"
 #include "Equipment/Sword.h"
 
-#include "Entities/Entity.h"
-
 #include "Health_Bar.h"
 #include "Health.h"
 
 #include "Stat_Level.h"
 
 class Resource_Holder;
+class World;
 
 class Player
 {

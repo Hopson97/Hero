@@ -25,7 +25,7 @@ Entity::Entity(const sf::Texture& texture,
     }
 }
 
-void Entity::update(World& world, Player& player, float dt)
+void Entity::update(Zone& zone, Player& player, float dt)
 {
     if (m_state != Entity_State::Dying)
     {
@@ -71,7 +71,7 @@ void Entity::update(World& world, Player& player, float dt)
             break;
     }
 
-    onUpdate(world, player, dt);
+    onUpdate(zone, player, dt);
     m_sprite.setPosition(m_position);
 }
 
