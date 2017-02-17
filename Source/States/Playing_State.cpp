@@ -23,11 +23,13 @@ namespace State
 
     void Playing::update(float dt)
     {
-/*
+
         std::cout << " X: " << sf::Mouse::getPosition(Display::get()).x
                   << " Y: " << sf::Mouse::getPosition(Display::get()).y
                   << "\n";
-*/
+
+        m_notice.update();
+
         switch(m_playerState)
         {
             case Player_State::Roaming:
@@ -52,6 +54,7 @@ namespace State
                 zoneSwitchDraw();
                 break;
         }
+        m_notice.draw();
     }
 
 
@@ -69,21 +72,16 @@ namespace State
                 m_mapGUI.resetBool();
             }
         }
-        else
-        {
-            m_notice.toggleOff();
-        }
     }
 
     void Playing::roamDraw()
     {
         m_world.draw ();
-        m_notice.draw();
     }
 
     void Playing::zoneSwitchUpdate(float dt)
     {
-        m_mapGUI.update();
+        m_mapGUI.update(m_player, m_notice);
         if (m_mapGUI.shouldExit())
         {
             if (m_mapGUI.getZoneID() != m_world.getZoneID())

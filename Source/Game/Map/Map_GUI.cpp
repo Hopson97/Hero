@@ -7,6 +7,9 @@
 #include "../Zone/ZTown.h"
 #include "../Zone/ZForest.h"
 
+#include "../Player.h"
+#include "../Game_Notice.h"
+
 #include <iostream>
 
 Map_GUI::Map_GUI()
@@ -19,12 +22,12 @@ Map_GUI::Map_GUI()
     m_background.setSize ({Display::WIDTH, Display::HEIGHT});
 
     m_zones.emplace_back(Zone_ID::Town,
-                         sf::Vector2f{415, 15},
+                         sf::Vector2f{13, 0},
                          1);
 
     m_zones.emplace_back(Zone_ID::Forest,
-                         sf::Vector2f{784, 15},
-                         1);
+                         sf::Vector2f{297, 24},
+                         5);
 
     m_selector.moveTo(m_zones.front());
 }
@@ -40,15 +43,21 @@ bool Map_GUI::shouldExit()
     return m_shouldExit;
 }
 
-void Map_GUI::update()
+void Map_GUI::update(const Player& player, Game_Notice& notice)
 {
     for (auto& zone : m_zones)
     {
         if (Maths::getDistance(sf::Mouse::getPosition(Display::get()), zone.getPos()) < 100)
         {
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            if ((player.getLevel() >= zone.getLevelReq()) && (sf::Mouse::isButtonPressed(sf::Mouse::Left)))
             {
-                m_selector.moveTo(zone);
+                if ((sf::Mouse::isButtonPressed(sf::Mouse::Left)))
+                    m_selector.moveTo(zone);
+            }
+            else
+            {
+                notice.toggleOn();
+                notice.setString("Level " + std::to_string(zone.getLevelReq()) + " required!");
             }
         }
     }

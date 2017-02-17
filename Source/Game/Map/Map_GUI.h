@@ -7,6 +7,9 @@
 #include "../Zone/Zone.h"
 #include "../GUI/Button.h"
 
+class Player;
+class Game_Notice;
+
 class Map_GUI
 {
     class Map_Zone
@@ -46,7 +49,7 @@ class Map_GUI
 
         void resetBool();
         bool shouldExit();
-        void update();
+        void update(const Player& player, Game_Notice& notice);
         void draw();
 
         Zone_ID getZoneID();

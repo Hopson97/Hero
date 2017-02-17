@@ -47,6 +47,10 @@ Player::Player()
     }
     m_legsAnimation.addFrame({2 * 50, 0, 50, 40}, 0.05);
     m_legs.setTextureRect(m_legsAnimation.getFrame());
+
+    m_equipmentSetUp = true;
+    checkUpgrade();
+    m_health.setHealthToMax();
 }
 
 void Player::input()
@@ -100,24 +104,33 @@ void Player::draw()
     m_healthBar.draw();
 }
 
-void Player::setPosition(const sf::Vector2f& pos) { m_legs.setPosition(pos); }
-
-const sf::Vector2f& Player::getPosition() const { return m_legs.getPosition(); }
+void Player::setPosition(const sf::Vector2f& pos)   { m_legs.setPosition(pos);      }
+const sf::Vector2f& Player::getPosition() const     { return m_legs.getPosition();  }
 
 //Just some setters for the equpment tiers
 void Player::setEquipmentBody(Equipment::Tier tier)
-{ m_equipment[(int)Equipment::Type::Body].setData(Equipment::getData(Equipment::Type::Body, tier)); }
+{
+    m_equipment[(int)Equipment::Type::Body].setData(Equipment::getData(Equipment::Type::Body, tier));
+    checkUpgrade();
+}
 
 void Player::setEquipmentHeadgear(Equipment::Tier tier)
-{ m_equipment[(int)Equipment::Type::Head].setData(Equipment::getData(Equipment::Type::Head, tier)); }
+{
+    m_equipment[(int)Equipment::Type::Head].setData(Equipment::getData(Equipment::Type::Head, tier));
+    checkUpgrade();
+}
 
 void Player::setEquipmentShield(Equipment::Tier tier)
-{ m_equipment[(int)Equipment::Type::Shield].setData(Equipment::getData(Equipment::Type::Shield, tier)); }
+{
+    m_equipment[(int)Equipment::Type::Shield].setData(Equipment::getData(Equipment::Type::Shield, tier));
+    checkUpgrade();
+}
 
 void Player::setEquipmentSword(Equipment::Tier tier)
 {
     m_equipment[(int)Equipment::Type::Sword].setData(Equipment::getData(Equipment::Type::Sword, tier));
     m_sword.upgrade(tier);
+    checkUpgrade();
 }
 
 //getters for equipment
@@ -177,6 +190,30 @@ void Player::addExp(int exp)
 void Player::addCoins(int amount)
 {
 
+}
+
+int Player::getLevel() const
+{
+    return 1;
+}
+
+
+
+void Player::checkUpgrade()
+{
+    if (m_equipmentSetUp)
+    {
+        int hInflu = 0;
+        int dInflu = 0;
+
+        for (Equippable& equiptment : m_equipment)
+        {
+            hInflu += equiptment.getData().getHealthBonus();
+            dInflu += equiptment.getData().getDamageBonus();
+        }
+
+        m_health.setInfluence(hInflu);
+    }
 }
 
 

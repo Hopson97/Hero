@@ -18,7 +18,8 @@ class Game_Notice
         void setString  (std::string message);
 
         void toggleOn   ();
-        void toggleOff  ();
+
+        void update();
 
         bool canDraw    () const;
 
@@ -29,6 +30,8 @@ class Game_Notice
         sf::Text            m_text;
 
         bool m_canDraw;
+
+        sf::Clock m_timer;
 };
 
 #endif // GAME_NOTICE_H_INCLUDED

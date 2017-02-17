@@ -16,9 +16,15 @@ class Health
 
         void setMax (int val);
 
+        void setHealthToMax();
+
+        void setInfluence(int infuence);
+
     private:
         int m_value = 0;
         int m_maxValue = 0;
+
+        int m_healthInfluence = 0;
 
         sf::Clock m_damageTimer;
 

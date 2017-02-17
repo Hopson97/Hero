@@ -50,10 +50,15 @@ class Player
         void addExp     (int exp);
         void addCoins   (int amount);
 
+        int getLevel    () const;
+
     private:
+        void checkUpgrade();
+
         void moveLegs (float dt);
 
         std::array<Equippable, (unsigned)Equipment::Type::NUM_TYPES> m_equipment;
+        bool m_equipmentSetUp = false;
 
         sf::RectangleShape m_legs;
 

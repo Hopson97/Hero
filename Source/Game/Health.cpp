@@ -16,7 +16,7 @@ int Health::getValue() const
 
 int Health::getMaxValue() const
 {
-    return m_maxValue;
+    return m_maxValue + m_healthInfluence;
 }
 
 void Health::damage(int amount)
@@ -31,10 +31,21 @@ void Health::damage(int amount)
 void Health::heal(int amount)
 {
     m_value += amount;
-    m_value = std::min(m_value, m_maxValue);
+    m_value = std::min(m_value, getMaxValue());
 }
 
 void Health::setMax(int val)
 {
     m_maxValue = val;
 }
+
+void Health::setHealthToMax()
+{
+    m_value = getMaxValue();
+}
+
+void Health::setInfluence(int infuence)
+{
+    m_healthInfluence = infuence;
+}
+
