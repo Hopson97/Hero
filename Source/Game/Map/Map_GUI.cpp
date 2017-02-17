@@ -29,6 +29,10 @@ Map_GUI::Map_GUI()
                          sf::Vector2f{297, 24},
                          1);
 
+    m_zones.emplace_back(Zone_ID::Beach,
+                         sf::Vector2f{455, 110},
+                         5);
+
     m_selector.moveTo(m_zones.front());
 }
 

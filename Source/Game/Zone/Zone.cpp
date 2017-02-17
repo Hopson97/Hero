@@ -59,8 +59,8 @@ int Zone::checkForDeadEntities(Player& player)
         if ((*itr)->isDead())
         {
             count++;
-            player.addExp   (entity->getExpLoot ());
-            player.addCoins (entity->getCoinLoot());
+            player.addExp   (entity->getLoot().getExp ());
+            player.addCoins (entity->getLoot().getCoin());
 
             itr = m_entities.erase(itr);
         }

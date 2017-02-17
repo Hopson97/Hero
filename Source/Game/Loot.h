@@ -9,6 +9,8 @@ class Loot
              int expGainLow = 1,
              int expGainHigh = 2);
 
+        int getCoin () const;
+        int getExp  () const;
 
     private:
         int m_expGainLow;

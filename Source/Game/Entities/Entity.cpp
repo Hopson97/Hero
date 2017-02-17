@@ -9,16 +9,10 @@ Entity::Entity(const sf::Texture& texture,
                const sf::Vector2f& position,
                bool center,
                int health,
-               int coinDropLow,
-               int coinDropHigh,
-               int expGainLow,
-               int expGainHigh)
+               const Loot& loot)
 :   m_health        (health)
 ,   m_position      (position)
-,   m_expGainLow    (expGainLow)
-,   m_expGainHigh   (expGainHigh)
-,   m_coinDropLow   (coinDropLow)
-,   m_coinDropHigh  (coinDropHigh)
+,   m_loot          (loot)
 {
     m_sprite.setTexture(&texture);
     m_sprite.setSize(size);
@@ -130,14 +124,9 @@ void Entity::addComponent(std::unique_ptr<Component::CBase> comp)
     m_components.push_back(std::move(comp));
 }
 
-int Entity::getCoinLoot() const
+const Loot& Entity::getLoot() const
 {
-    return Random::integer(m_coinDropLow, m_coinDropHigh);
-}
-
-int Entity::getExpLoot() const
-{
-    return Random::integer(m_expGainLow, m_expGainHigh);
+    return m_loot;
 }
 
 

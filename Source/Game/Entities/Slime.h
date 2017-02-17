@@ -3,10 +3,10 @@
 
 #include <SFML/Audio/Sound.hpp>
 
-#include "Entity.h"
+#include "Enemy.h"
 #include "../../Animation.h"
 
-class Slime : public Entity
+class Slime : public Enemy
 {
     constexpr static int SPEED = 100;
 
@@ -14,12 +14,9 @@ class Slime : public Entity
         Slime();
         ~Slime();
 
-        void onUpdate (World& world, Player& player, float dt) override;
-
     private:
         void playHitSound() override;
 
-        Animation* m_p_currentAnimation;
         Animation m_animation;
         Animation m_damagedAnimation;
 

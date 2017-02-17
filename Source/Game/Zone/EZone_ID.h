@@ -4,7 +4,8 @@
  enum class Zone_ID
  {
      Town,
-     Forest
+     Forest,
+     Beach
  };
 
 #endif // EZONE_ID_H_INCLUDED

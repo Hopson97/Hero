@@ -12,14 +12,13 @@
 #include "../../Display.h"
 
 Bee::Bee()
-:   Entity  (getResources().getTexture(Texture_ID::Entity_Bee),
-             {100, 100},
-             {(float)Random::integer(0, Display::WIDTH), (float)Random::integer(300, Display::HEIGHT)},
-             true,
-             10,    //Health
-             3, 5,  //Coin drop
-             8, 10) //Exp drop
-,   m_p_currentAnimation (&m_animation)
+:   Enemy (getResources().getTexture(Texture_ID::Entity_Bee),
+          {100, 100},
+          {(float)Random::integer(0, Display::WIDTH), (float)Random::integer(300, Display::HEIGHT)},
+           10,    //Health
+          {3, 5,  //Coin drop
+           8, 10},
+           m_animation, m_damagedAnimation) //Exp drop
 {
     addComponent(std::make_unique<Component::CFollow_Player>    (*this, 25, 200));
     addComponent(std::make_unique<Component::CDamaged_By_Sword> (*this, 0.5));
@@ -43,32 +42,17 @@ Bee::Bee()
     {
         m_damagedAnimation.addFrame({i * 50, 50, 50, 50}, 0.1);
     }
+
+    m_hitSound.setBuffer(getResources().getSound(Sound_ID::Dmg_Bee));
 }
 
 Bee::~Bee()
 {
-
+    m_hitSound.stop();
 }
 
-void Bee::onUpdate(World& world, Player& player, float dt)
-{
-    switch(getState())
-    {
-        case Entity_State::Poll_Death:
-        case Entity_State::Dying:
-        case Entity_State::Damaged:
-            m_p_currentAnimation = &m_damagedAnimation;
-            break;
-
-        case Entity_State::Walking:
-            m_p_currentAnimation = &m_animation;
-            break;
-    }
-
-    setTextureRect(m_p_currentAnimation->getFrame());
-}
 
 void Bee::playHitSound()
 {
-
+    m_hitSound.play();
 }

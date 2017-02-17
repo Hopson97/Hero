@@ -9,5 +9,5 @@ Sound_Manager::Sound_Manager()
 
     registerResource(Sound_ID::Dmg_Player,  path + "Dmg_Player.ogg" );
     registerResource(Sound_ID::Dmg_Slime,   path + "Dmg_Slime.ogg"  );
-    registerResource(Sound_ID::Dmg_Slime,   path + "Dmg_Bee.ogg"  );
+    registerResource(Sound_ID::Dmg_Bee,     path + "Dmg_Bee.ogg"  );
 }

@@ -39,7 +39,7 @@ void ZForest::onDraw()
 void ZForest::addEnemy()
 {
     m_enemyCount++;
-    int i = Random::integer(1, 10);
+    int i = Random::integer(0, 10);
 
     if (i < 5)
         addEntity(std::make_unique<Slime>());

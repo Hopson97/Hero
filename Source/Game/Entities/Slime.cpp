@@ -13,14 +13,13 @@
 
 
 Slime::Slime()
-:   Entity  (getResources().getTexture(Texture_ID::Entity_Slime),
+:   Enemy  (getResources().getTexture(Texture_ID::Entity_Slime),
              {100, 100},
              {(float)Random::integer(0, Display::WIDTH), (float)Random::integer(300, Display::HEIGHT)},
-             true,
              10,    //Health
-             3, 5,  //Coin drop
-             8, 10) //Exp drop
-,   m_p_currentAnimation (&m_animation)
+             {3, 5,  //Coin drop
+             8, 10},
+             m_animation, m_damagedAnimation) //Exp drop
 {
     m_hitSound.setBuffer(getResources().getSound(Sound_ID::Dmg_Slime));
 
@@ -54,24 +53,6 @@ Slime::~Slime()
     m_hitSound.stop();
 }
 
-
-void Slime::onUpdate(World& world, Player& player, float dt)
-{
-    switch(getState())
-    {
-        case Entity_State::Poll_Death:
-        case Entity_State::Dying:
-        case Entity_State::Damaged:
-            m_p_currentAnimation = &m_damagedAnimation;
-            break;
-
-        case Entity_State::Walking:
-            m_p_currentAnimation = &m_animation;
-            break;
-    }
-
-    setTextureRect(m_p_currentAnimation->getFrame());
-}
 
 void Slime::playHitSound()
 {

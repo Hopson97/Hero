@@ -15,21 +15,19 @@ class Enemy : public Entity
         Enemy( const sf::Texture& texture,
                const sf::Vector2f& size,
                const sf::Vector2f& position,
-               bool center = false,
-               int health  = 1,
-               int coinDropLow = 1,
-               int coinDropHigh = 2,
-               int expGainLow = 1,
-               int expGainHigh = 2);
+               int health,
+               const Loot& loot,
+               Animation& roamAnimation,
+               Animation& dmgAnimation );
 
         ~Enemy();
 
-        void onUpdate (World& world, Player& player, float dt) override;
+        virtual void onUpdate (World& world, Player& player, float dt) override;
 
     private:
         void playHitSound() override;
 
-        Animation* m_p_currentAnimation;
+        Animation** m_p_currentAnimation;
         Animation* m_animation;
         Animation* m_damagedAnimation;
 

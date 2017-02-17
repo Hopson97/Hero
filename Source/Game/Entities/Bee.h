@@ -3,11 +3,11 @@
 
 #include <SFML/Audio/Sound.hpp>
 
-#include "Entity.h"
+#include "Enemy.h"
 #include "../../Animation.h"
 
 
-class Bee : public Entity
+class Bee : public Enemy
 {
     constexpr static int SPEED = 100;
 
@@ -15,12 +15,9 @@ class Bee : public Entity
         Bee();
         ~Bee();
 
-        void onUpdate (World& world, Player& player, float dt) override;
-
     private:
         void playHitSound() override;
 
-        Animation* m_p_currentAnimation;
         Animation m_animation;
         Animation m_damagedAnimation;
 
