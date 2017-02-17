@@ -23,11 +23,11 @@ namespace State
 
     void Playing::update(float dt)
     {
-
+/*
         std::cout << " X: " << sf::Mouse::getPosition(Display::get()).x
                   << " Y: " << sf::Mouse::getPosition(Display::get()).y
                   << "\n";
-
+*/
         m_notice.update();
 
         switch(m_playerState)

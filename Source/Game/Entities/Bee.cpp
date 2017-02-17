@@ -14,13 +14,13 @@
 Bee::Bee()
 :   Enemy (getResources().getTexture(Texture_ID::Entity_Bee),
           {100, 100},
-          {(float)Random::integer(0, Display::WIDTH), (float)Random::integer(300, Display::HEIGHT)},
-           10,    //Health
-          {3, 5,  //Coin drop
-           8, 10},
+          {(float)Random::integer(0, Display::WIDTH), (float)Random::integer(180, Display::HEIGHT)},
+           5,        //Health
+          {1, 1,      //Coin drop
+           1, 1},    //Exp drop
            m_animation, m_damagedAnimation) //Exp drop
 {
-    addComponent(std::make_unique<Component::CFollow_Player>    (*this, 25, 200));
+    addComponent(std::make_unique<Component::CFollow_Player_AI> (*this, 25, 200, 400));
     addComponent(std::make_unique<Component::CDamaged_By_Sword> (*this, 0.5));
     addComponent(std::make_unique<Component::CDamage_Player>    (*this, 0.5, 1, 50));
 

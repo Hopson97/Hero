@@ -15,15 +15,15 @@
 Slime::Slime()
 :   Enemy  (getResources().getTexture(Texture_ID::Entity_Slime),
              {100, 100},
-             {(float)Random::integer(0, Display::WIDTH), (float)Random::integer(300, Display::HEIGHT)},
-             10,    //Health
-             {3, 5,  //Coin drop
-             8, 10},
-             m_animation, m_damagedAnimation) //Exp drop
+             {(float)Random::integer(0, Display::WIDTH), (float)Random::integer(180, Display::HEIGHT)},
+             10,        //Health
+             {1, 2,     //Coin drop
+             2, 3},    //Exp drop
+             m_animation, m_damagedAnimation)
 {
     m_hitSound.setBuffer(getResources().getSound(Sound_ID::Dmg_Slime));
 
-    addComponent(std::make_unique<Component::CFollow_Player>    (*this, 25, 125));
+    addComponent(std::make_unique<Component::CFollow_Player_AI> (*this, 25, 125, 400));
     addComponent(std::make_unique<Component::CDamaged_By_Sword> (*this, 0.3));
     addComponent(std::make_unique<Component::CDamage_Player>    (*this, 0.5, 3, 50));
 

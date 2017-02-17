@@ -184,20 +184,18 @@ void Player::hit(int dmg)
 
 void Player::addExp(int exp)
 {
-
+    m_level.addExp(exp);
 }
 
 void Player::addCoins(int amount)
 {
-
+    m_coins += amount;
 }
 
-int Player::getLevel() const
+const Stat_Level& Player::getLevel () const
 {
-    return 1;
+    return m_level;
 }
-
-
 
 void Player::checkUpgrade()
 {
@@ -215,5 +213,12 @@ void Player::checkUpgrade()
         m_health.setInfluence(hInflu);
     }
 }
+
+int Player::getCoins() const
+{
+    return m_coins;
+}
+
+
 
 

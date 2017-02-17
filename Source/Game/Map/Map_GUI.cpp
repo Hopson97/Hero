@@ -31,11 +31,19 @@ Map_GUI::Map_GUI()
 
     m_zones.emplace_back(Zone_ID::Beach,
                          sf::Vector2f{455, 110},
-                         4);
+                         3);
 
     m_zones.emplace_back(Zone_ID::Mountains,
                          sf::Vector2f{908, 40},
-                         9);
+                         7);
+
+    m_zones.emplace_back(Zone_ID::River,
+                         sf::Vector2f{885, 255},
+                         12);
+
+    m_zones.emplace_back(Zone_ID::Desert,
+                         sf::Vector2f{967, 390},
+                         18);
 
     m_selector.moveTo(m_zones.front());
 }
@@ -57,7 +65,7 @@ void Map_GUI::update(const Player& player, Game_Notice& notice)
     {
         if (Maths::getDistance(sf::Mouse::getPosition(Display::get()), zone.getPos()) < 100)
         {
-            if ((player.getLevel() >= zone.getLevelReq()))
+            if ((player.getLevel().getLevel() >= zone.getLevelReq()))
             {
                 if ((sf::Mouse::isButtonPressed(sf::Mouse::Left)))
                     m_selector.moveTo(zone);
@@ -96,6 +104,18 @@ std::unique_ptr<Zone> Map_GUI::getZone()
 
         case Zone_ID::Forest:
             return std::make_unique<ZForest>();
+
+        case Zone_ID::Beach:
+            break;
+
+        case Zone_ID::Mountains:
+            break;
+
+        case Zone_ID::River:
+            break;
+
+        case Zone_ID::Desert:
+            break;
     }
     return nullptr;
 }

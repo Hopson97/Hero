@@ -15,6 +15,8 @@
 #include "Health_Bar.h"
 #include "Health.h"
 
+#include "Stat_Level.h"
+
 class Resource_Holder;
 
 class Player
@@ -50,7 +52,8 @@ class Player
         void addExp     (int exp);
         void addCoins   (int amount);
 
-        int getLevel    () const;
+        const Stat_Level& getLevel () const;
+        int getCoins() const;
 
     private:
         void checkUpgrade();
@@ -68,6 +71,10 @@ class Player
 
         Health m_health;
         Health_Bar m_healthBar;
+
+        Stat_Level m_level;
+
+        int m_coins = 0;
 };
 
 #endif // PLAYER_H_INCLUDED

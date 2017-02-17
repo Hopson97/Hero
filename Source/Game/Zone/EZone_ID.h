@@ -7,6 +7,8 @@
      Forest,
      Beach,
      Mountains,
+     River,
+     Desert,
  };
 
 #endif // EZONE_ID_H_INCLUDED
