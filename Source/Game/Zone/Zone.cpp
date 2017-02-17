@@ -7,6 +7,7 @@
 
 #include "../Entities/Blacksmith.h"
 #include "../World.h"
+#include "../Player.h"
 
 Zone::Zone(const sf::Texture& background, Zone_ID id)
 :   m_id (id)
@@ -48,14 +49,19 @@ Zone_ID Zone::getID() const
 }
 
 
-int Zone::checkForDeadEntities()
+int Zone::checkForDeadEntities(Player& player)
 {
     int count = 0;
     for (auto itr = m_entities.begin(); itr != m_entities.end() ; )
     {
+        auto& entity = *itr;
+
         if ((*itr)->isDead())
         {
             count++;
+            player.addExp   (entity->getExpLoot ());
+            player.addCoins (entity->getCoinLoot());
+
             itr = m_entities.erase(itr);
         }
         else

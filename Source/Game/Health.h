@@ -1,6 +1,8 @@
 #ifndef HEALTH_H_INCLUDED
 #define HEALTH_H_INCLUDED
 
+#include <SFML/System/Clock.hpp>
+
 class Health
 {
     public:
@@ -17,6 +19,8 @@ class Health
     private:
         int m_value = 0;
         int m_maxValue = 0;
+
+        sf::Clock m_damageTimer;
 
 };
 

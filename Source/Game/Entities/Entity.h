@@ -27,7 +27,11 @@ class Entity
                const sf::Vector2f& size,
                const sf::Vector2f& position,
                bool center = false,
-               int health  = 1);
+               int health  = 1,
+               int coinDropLow = 1,
+               int coinDropHigh = 2,
+               int expGainLow = 1,
+               int expGainHigh = 2);
 
         void update(World& world, Player& player, float dt);
         virtual void onUpdate (World& world, Player& player, float dt) = 0;
@@ -46,14 +50,22 @@ class Entity
 
         const sf::RectangleShape& getSprite() const;
 
-        Health health;
+        void hit(int dmg);
+        const Health& getHealth() const;
+
+        int getCoinLoot () const;
+        int getExpLoot  () const;
+
     protected:
         void addComponent(std::unique_ptr<Component::CBase> comp);
 
         void setTextureRect(const sf::IntRect& rect);
 
+        virtual void playHitSound(){}
 
     private:
+        Health m_health;
+
         bool m_isDead = false;
 
         sf::RectangleShape m_sprite;
@@ -64,6 +76,12 @@ class Entity
         std::vector<std::unique_ptr<Component::CBase>> m_components;
 
         float m_deathState = 255;
+
+        int m_expGainLow;
+        int m_expGainHigh;
+
+        int m_coinDropLow;
+        int m_coinDropHigh;
 
 };
 

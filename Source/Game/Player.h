@@ -47,6 +47,9 @@ class Player
 
         void hit(int dmg);
 
+        void addExp     (int exp);
+        void addCoins   (int amount);
+
     private:
         void moveLegs (float dt);
 

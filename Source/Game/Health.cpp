@@ -21,7 +21,11 @@ int Health::getMaxValue() const
 
 void Health::damage(int amount)
 {
-    m_value -= amount;
+    if (m_damageTimer.getElapsedTime().asSeconds() > 0.2)
+    {
+        m_damageTimer.restart();
+        m_value -= amount;
+    }
 }
 
 void Health::heal(int amount)

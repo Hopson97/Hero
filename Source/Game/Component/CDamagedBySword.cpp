@@ -22,7 +22,7 @@ namespace Component
         {
             if (m_p_entity->getSprite().getGlobalBounds().intersects(sword.getBounds()))
             {
-                m_p_entity->health.damage(sword.getEquipment().getData().getDamageBonus());
+                m_p_entity->hit(sword.getEquipment().getData().getDamageBonus());
                 m_p_entity->setState(Entity_State::Damaged);
                 m_invincibilityTimer.restart();
             }

@@ -17,12 +17,16 @@ Slime::Slime()
              {100, 100},
              {(float)Random::integer(0, Display::WIDTH), (float)Random::integer(300, Display::HEIGHT)},
              true,
-             10)
+             10,    //Health
+             3, 5,  //Coin drop
+             8, 10) //Exp drop
 ,   m_p_currentAnimation (&m_animation)
 {
-    addComponent(std::make_unique<Component::CFollow_Player>    (*this, 25, SPEED));
+    m_hitSound.setBuffer(getResources().getSound(Sound_ID::Dmg_Slime));
+
+    addComponent(std::make_unique<Component::CFollow_Player>    (*this, 25, 125));
     addComponent(std::make_unique<Component::CDamaged_By_Sword> (*this, 0.3));
-    addComponent(std::make_unique<Component::CDamage_Player>    (*this, 0.5, 5, 30));
+    addComponent(std::make_unique<Component::CDamage_Player>    (*this, 0.5, 3, 50));
 
 
     for (int i = 0 ; i < 4 ; i++)
@@ -45,6 +49,12 @@ Slime::Slime()
     }
 }
 
+Slime::~Slime()
+{
+    m_hitSound.stop();
+}
+
+
 void Slime::onUpdate(World& world, Player& player, float dt)
 {
     switch(getState())
@@ -61,5 +71,10 @@ void Slime::onUpdate(World& world, Player& player, float dt)
     }
 
     setTextureRect(m_p_currentAnimation->getFrame());
+}
+
+void Slime::playHitSound()
+{
+    m_hitSound.play();
 }
 

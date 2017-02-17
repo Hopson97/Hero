@@ -9,7 +9,7 @@
 Player::Player()
 :   m_sword     (m_equipment[(int)Equipment::Type::Sword])
 ,   m_health    (25)
-,   m_healthBar (m_health)
+,   m_healthBar (m_health, getResources().getSound(Sound_ID::Dmg_Player))
 {
     m_legs.setPosition(500, 500);
 
@@ -165,6 +165,18 @@ void Player::moveLegs(float dt)
 
 void Player::hit(int dmg)
 {
+    m_healthBar.pop();
     m_health.damage(dmg);
 }
+
+void Player::addExp(int exp)
+{
+
+}
+
+void Player::addCoins(int amount)
+{
+
+}
+
 

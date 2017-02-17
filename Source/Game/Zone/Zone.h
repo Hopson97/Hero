@@ -32,7 +32,7 @@ class Zone
         virtual void onUpdate   (World& world, Player& player, float dt) = 0;
         virtual void onDraw     () = 0;
 
-        int checkForDeadEntities();
+        int checkForDeadEntities(Player& player);
         bool entityDamaged      ();
 
 

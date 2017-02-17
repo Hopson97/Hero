@@ -2,13 +2,23 @@
 
 #include "../../Display.h"
 
+#include "../../Util/Random.h"
+
 Entity::Entity(const sf::Texture& texture,
                const sf::Vector2f& size,
                const sf::Vector2f& position,
                bool center,
-               int health)
-:   health      (health)
-,   m_position  (position)
+               int health,
+               int coinDropLow,
+               int coinDropHigh,
+               int expGainLow,
+               int expGainHigh)
+:   m_health        (health)
+,   m_position      (position)
+,   m_expGainLow    (expGainLow)
+,   m_expGainHigh   (expGainHigh)
+,   m_coinDropLow   (coinDropLow)
+,   m_coinDropHigh  (coinDropHigh)
 {
     m_sprite.setTexture(&texture);
     m_sprite.setSize(size);
@@ -33,7 +43,11 @@ void Entity::update(World& world, Player& player, float dt)
     else
     {
         m_deathState -= 200 * dt;
-        m_sprite.setFillColor({m_deathState, m_deathState, m_deathState, m_deathState});
+        m_sprite.setFillColor({(sf::Uint8)m_deathState,
+                               (sf::Uint8)m_deathState,
+                               (sf::Uint8)m_deathState,
+                               (sf::Uint8)m_deathState});
+
         if (m_deathState < 50)
         {
             m_isDead = true;
@@ -52,7 +66,7 @@ void Entity::update(World& world, Player& player, float dt)
             break;
 
         case Entity_State::Poll_Death:
-            if (health.getValue() <= 0)
+            if (m_health.getValue() <= 0)
             {
                 m_state = Entity_State::Dying;
             }
@@ -100,10 +114,30 @@ Entity_State Entity::getState() const
 }
 
 
+void Entity::hit(int dmg)
+{
+    playHitSound();
+    m_health.damage(dmg);
+}
+
+const Health& Entity::getHealth() const
+{
+    return m_health;
+}
 
 void Entity::addComponent(std::unique_ptr<Component::CBase> comp)
 {
     m_components.push_back(std::move(comp));
+}
+
+int Entity::getCoinLoot() const
+{
+    return Random::integer(m_coinDropLow, m_coinDropHigh);
+}
+
+int Entity::getExpLoot() const
+{
+    return Random::integer(m_expGainLow, m_expGainHigh);
 }
 
 
