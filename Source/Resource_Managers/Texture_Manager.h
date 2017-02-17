@@ -21,6 +21,7 @@ enum class Texture_ID
 
     Entity_Blacksmith,
     Entity_Slime,
+    Entity_Bee,
 
     Zone_Village,
     Zone_Forest,
