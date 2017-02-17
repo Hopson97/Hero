@@ -16,7 +16,7 @@ void Stat_Level::addExp(int exp)
 
     if (overLoad >= 0)
     {
-        m_expForNextLevel *= 1.3;
+        m_expForNextLevel *= 1.35;
         m_currentXP = overLoad;
         m_level++;
         m_hasLeveledUp = true;

@@ -6,6 +6,7 @@
 
 #include "../Zone/ZTown.h"
 #include "../Zone/ZForest.h"
+#include "../Zone/ZBeach.h"
 
 #include "../Player.h"
 #include "../Game_Notice.h"
@@ -31,19 +32,19 @@ Map_GUI::Map_GUI()
 
     m_zones.emplace_back(Zone_ID::Beach,
                          sf::Vector2f{455, 110},
-                         3);
+                         5);
 
     m_zones.emplace_back(Zone_ID::Mountains,
                          sf::Vector2f{908, 40},
-                         7);
+                         9);
 
     m_zones.emplace_back(Zone_ID::River,
                          sf::Vector2f{885, 255},
-                         12);
+                         14);
 
     m_zones.emplace_back(Zone_ID::Desert,
                          sf::Vector2f{967, 390},
-                         18);
+                         20);
 
     m_selector.moveTo(m_zones.front());
 }
@@ -106,6 +107,7 @@ std::unique_ptr<Zone> Map_GUI::getZone()
             return std::make_unique<ZForest>();
 
         case Zone_ID::Beach:
+            return std::make_unique<ZBeach>();
             break;
 
         case Zone_ID::Mountains:

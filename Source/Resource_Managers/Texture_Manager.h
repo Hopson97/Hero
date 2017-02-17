@@ -25,6 +25,10 @@ enum class Texture_ID
 
     Zone_Village,
     Zone_Forest,
+    Zone_Beach,
+    Zone_Mountians,
+    Zone_River,
+    Zone_Desert,
 
     GUI_Exit_Button,
 
