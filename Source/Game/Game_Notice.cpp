@@ -26,10 +26,7 @@ void Game_Notice::setString(std::string message)
 
 void Game_Notice::update()
 {
-    if (m_canDraw && m_timer.getElapsedTime().asSeconds() >= 1.8f)
-    {
-        m_canDraw = false;
-    }
+    m_canDraw = false;
 }
 
 

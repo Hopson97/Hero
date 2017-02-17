@@ -27,7 +27,7 @@ Map_GUI::Map_GUI()
 
     m_zones.emplace_back(Zone_ID::Forest,
                          sf::Vector2f{297, 24},
-                         5);
+                         1);
 
     m_selector.moveTo(m_zones.front());
 }
