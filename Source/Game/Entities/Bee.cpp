@@ -55,9 +55,8 @@ void Bee::onUpdate(Zone& zone, Player& player, float dt)
     Enemy::onUpdate(zone, player, dt);
 
     if(Maths::getDistance(getPosition(), player.getPosition()) <= 400 &&
-       m_projectileTimer.getElapsedTime().asSeconds() > 3)
+       m_projectileTimer.getElapsedTime().asSeconds() > 10)
     {
-        std::cout << "adding an entity" << std::endl;
         zone.addProjectile(sf::Vector2f{getPosition().x,
                                         getPosition().y + getSprite().getLocalBounds().height / 2},
                            player.getPosition(),
@@ -76,7 +75,10 @@ Bee::~Bee()
 }
 
 
-void Bee::playHitSound()
+void Bee::onDamaged()
 {
     m_hitSound.play();
 }
+
+void Bee::whenDying(Zone& zone, Player& player, float dt)
+{ }

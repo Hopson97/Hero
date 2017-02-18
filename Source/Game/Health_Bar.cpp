@@ -20,8 +20,6 @@ Health_Bar::Health_Bar(const Health& health, const sf::SoundBuffer& buff)
         m_stages.addFrame({0, i * 22, 220, 22}, 0.5);
     }
     m_sprite.setTextureRect(m_stages.getFrame());
-
-    std::cout << m_stages.getNumFrames() << std::endl;
 }
 
 void Health_Bar::update()

@@ -15,11 +15,6 @@ Enemy::Enemy(const sf::Texture& texture,
 
 }
 
-Enemy::~Enemy()
-{
-
-}
-
 void Enemy::onUpdate(Zone& zone, Player& player, float dt)
 {
     switch(getState())
@@ -37,10 +32,4 @@ void Enemy::onUpdate(Zone& zone, Player& player, float dt)
 
     setTextureRect((*m_p_currentAnimation)->getFrame());
 }
-
-void Enemy::playHitSound()
-{
-
-}
-
 

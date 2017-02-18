@@ -52,7 +52,12 @@ class Player
         void addCoins   (int amount);
 
         const Stat_Level& getLevel () const;
+        Stat_Level& getLevel ();
         int getCoins() const;
+
+        int getDamage();
+
+        void heal();
 
     private:
         void checkUpgrade();
@@ -67,6 +72,7 @@ class Player
         Animation m_legsAnimation;
 
         Sword m_sword;
+        int m_damageInfluence;
 
         Health m_health;
         Health_Bar m_healthBar;

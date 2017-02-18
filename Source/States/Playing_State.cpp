@@ -40,6 +40,11 @@ namespace State
                 zoneSwitchUpdate(dt);
                 break;
         }
+
+        if (m_player.getLevel().hasLeveledUp())
+        {
+            m_player.heal();
+        }
     }
 
     void Playing::draw()
@@ -86,7 +91,6 @@ namespace State
         {
             if (m_mapGUI.getZoneID() != m_world.getZoneID())
             {
-                std::cout << "not" << std::endl;
                 m_world.setZone(std::move(m_mapGUI.getZone()));
             }
             //get zone

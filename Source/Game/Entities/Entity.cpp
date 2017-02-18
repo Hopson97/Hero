@@ -51,6 +51,7 @@ void Entity::update(Zone& zone, Player& player, float dt)
     switch (m_state)
     {
         case Entity_State::Dying:
+            whenDying(zone, player, dt);
             break;
 
         case Entity_State::Walking:
@@ -110,7 +111,7 @@ Entity_State Entity::getState() const
 
 void Entity::hit(int dmg)
 {
-    playHitSound();
+    onDamaged();
     m_health.damage(dmg);
 }
 

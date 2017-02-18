@@ -18,7 +18,8 @@ class Bee : public Enemy
         void onUpdate(Zone& zone, Player& player, float dt) override;
 
     private:
-        void playHitSound() override;
+        void onDamaged() override;
+        void whenDying(Zone& zone, Player& player, float dt) override;
 
         Animation m_animation;
         Animation m_damagedAnimation;

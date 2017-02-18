@@ -15,7 +15,7 @@ class Slime : public Enemy
         ~Slime();
 
     private:
-        void playHitSound() override;
+        void onDamaged() override;
 
         Animation m_animation;
         Animation m_damagedAnimation;

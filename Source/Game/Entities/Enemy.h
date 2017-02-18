@@ -20,12 +20,13 @@ class Enemy : public Entity
                Animation& roamAnimation,
                Animation& dmgAnimation );
 
-        ~Enemy();
+        virtual ~Enemy() = default;
 
         virtual void onUpdate (Zone& zone, Player& player, float dt) override;
 
     private:
-        void playHitSound() override;
+        virtual void onDamaged() = 0;
+        virtual void whenDying(Zone& zone, Player& player, float dt){}
 
         Animation** m_p_currentAnimation;
         Animation* m_animation;

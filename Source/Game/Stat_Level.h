@@ -15,9 +15,9 @@ class Stat_Level
         bool hasLeveledUp       ();
 
     private:
-        int m_level             = 1;
-        int m_currentXP         = 0;
-        int m_expForNextLevel   = 10;
+        int m_level                 = 1;
+        double m_currentXP          = 0;
+        double m_expForNextLevel    = 10;
 
         bool m_hasLeveledUp = false;
 };

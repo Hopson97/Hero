@@ -18,8 +18,8 @@ namespace Component
     ,   m_entitySpeed       (speed)
     ,   m_distToFollow      (minDistToFollow)
     {
-
     }
+
 
     void CFollow_Player_AI::update(float dt, Player& player)
     {

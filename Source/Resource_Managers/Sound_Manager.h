@@ -20,6 +20,7 @@ class Sound_Manager : public Resource_Manager<sf::SoundBuffer, Sound_ID>
 {
     public:
         Sound_Manager();
+        ~Sound_Manager();
 };
 
 #endif // SOUND_MANAGER_H_INCLUDED

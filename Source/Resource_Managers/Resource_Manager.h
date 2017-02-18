@@ -16,6 +16,8 @@ class Resource_Manager
             return m_resources.at(e);
         }
 
+        virtual ~Resource_Manager() = default;
+
     protected:
         void registerResource(Enum key, const std::string& filename)
         {

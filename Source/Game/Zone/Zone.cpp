@@ -35,7 +35,6 @@ void Zone::update(World& world, Player& player, float dt)
 
         if(projectile->isDead())
         {
-            std::cout << "bye bye" << std::endl;
             projectile = m_projetiles.erase(projectile);
         }
         else

@@ -3,9 +3,7 @@
 #include "../../Resource_Managers/Resource_Holder.h"
 #include "../Player.h"
 
-#include "../Entities/Slime.h"
-#include "../Entities/Bee.h"
-#include "../Entities/Blacksmith.h"
+#include "../Entities/Coral_Slime.h"
 
 #include "../../Util/Random.h"
 
@@ -17,7 +15,16 @@ ZBeach::ZBeach()
 
 void ZBeach::onUpdate(World& world, Player& player, float dt)
 {
+    m_enemyCount -= checkForDeadEntities(player);
 
+    static sf::Clock clock;
+
+    if (m_enemyCount < 10)
+    //if (clock.getElapsedTime().asSeconds() > 0.5)
+    {
+        addEnemy();
+        clock.restart();
+    }
 }
 
 void ZBeach::onDraw()
@@ -27,5 +34,6 @@ void ZBeach::onDraw()
 
 void ZBeach::addEnemy()
 {
-
+    m_enemyCount++;
+    addEntity(std::make_unique<Coral_Slime>());
 }

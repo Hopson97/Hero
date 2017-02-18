@@ -130,7 +130,7 @@ void Player::setEquipmentSword(Equipment::Tier tier)
 {
     m_equipment[(int)Equipment::Type::Sword].setData(Equipment::getData(Equipment::Type::Sword, tier));
     m_sword.upgrade(tier);
-    checkUpgrade();
+    //checkUpgrade();
 }
 
 //getters for equipment
@@ -192,6 +192,17 @@ void Player::addCoins(int amount)
     m_coins += amount;
 }
 
+int Player::getCoins() const
+{
+    return m_coins;
+}
+
+
+Stat_Level& Player::getLevel ()
+{
+    return m_level;
+}
+
 const Stat_Level& Player::getLevel () const
 {
     return m_level;
@@ -211,14 +222,24 @@ void Player::checkUpgrade()
         }
 
         m_health.setInfluence(hInflu);
+        m_damageInfluence = dInflu;
     }
+
 }
 
-int Player::getCoins() const
+
+int Player::getDamage()
 {
-    return m_coins;
+    return m_sword.getEquipment().getData().getDamageBonus() +
+            m_damageInfluence +
+            m_level.getLevel() / 2;
 }
 
+
+void Player::heal()
+{
+    m_health.setHealthToMax();
+}
 
 
 

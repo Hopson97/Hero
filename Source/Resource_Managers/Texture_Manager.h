@@ -23,6 +23,8 @@ enum class Texture_ID
     Entity_Slime,
     Entity_Bee,
 
+    Entity_Coral_Slime,
+
     Zone_Village,
     Zone_Forest,
     Zone_Beach,

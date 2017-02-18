@@ -34,6 +34,8 @@ class Entity
         void update(Zone& zone, Player& player, float dt);
         virtual void onUpdate (Zone& zone, Player& player, float dt) = 0;
 
+        virtual ~Entity() = default;
+
         void draw ();
 
         bool isDead() const;
@@ -58,7 +60,8 @@ class Entity
 
         void setTextureRect(const sf::IntRect& rect);
 
-        virtual void playHitSound(){}
+        virtual void onDamaged(){};
+        virtual void whenDying(Zone& zone, Player& player, float dt){};
 
     private:
         Health m_health;

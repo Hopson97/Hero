@@ -21,13 +21,13 @@ void ZForest::onUpdate(World& world, Player& player, float dt)
 {
     m_enemyCount -= checkForDeadEntities(player);
 
-    //static sf::Clock clock;
+    static sf::Clock clock;
 
-    if (m_enemyCount < 2)
+    if (m_enemyCount < 6)
     //if (clock.getElapsedTime().asSeconds() > 0.5)
     {
         addEnemy();
-        //clock.restart();
+        clock.restart();
     }
 }
 

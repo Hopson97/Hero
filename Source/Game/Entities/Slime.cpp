@@ -54,7 +54,7 @@ Slime::~Slime()
 }
 
 
-void Slime::playHitSound()
+void Slime::onDamaged()
 {
     m_hitSound.play();
 }

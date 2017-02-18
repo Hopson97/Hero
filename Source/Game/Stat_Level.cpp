@@ -20,7 +20,7 @@ void Stat_Level::addExp(int exp)
         m_currentXP = overLoad;
         m_level++;
         m_hasLeveledUp = true;
-        std::cout << "Leveled up!" << std::endl;
+        std::cout << "Leveled up! " << m_level << " " << m_expForNextLevel << std::endl;
     }
 }
 
