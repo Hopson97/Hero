@@ -15,6 +15,8 @@ class Bee : public Enemy
         Bee();
         ~Bee();
 
+        void onUpdate(Zone& zone, Player& player, float dt) override;
+
     private:
         void playHitSound() override;
 
@@ -22,6 +24,8 @@ class Bee : public Enemy
         Animation m_damagedAnimation;
 
         sf::Sound m_hitSound;
+
+        sf::Clock m_projectileTimer;
 };
 
 #endif // BEE_H_INCLUDED

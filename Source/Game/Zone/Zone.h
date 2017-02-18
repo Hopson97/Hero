@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "../Entities/Entity.h"
+#include "../Projectile.h"
 
 #include "EZone_ID.h"
 
@@ -24,6 +25,12 @@ class Zone
 
         Zone_ID getID() const;
 
+        template<typename... Args>
+        void addProjectile(Args&&... args)
+        {
+            m_projetiles.emplace_back(std::forward<Args>(args)...);
+        }
+
     protected:
         Zone(const sf::Texture& background, Zone_ID id);
 
@@ -41,6 +48,7 @@ class Zone
         sf::RectangleShape m_shakeGround;
 
         std::vector<std::unique_ptr<Entity>> m_entities;
+        std::vector<Projectile> m_projetiles;
 
         Zone_ID m_id;
 };

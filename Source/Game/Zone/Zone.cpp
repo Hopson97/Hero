@@ -28,6 +28,21 @@ void Zone::update(World& world, Player& player, float dt)
     {
         entity->update(*this, player, dt);
     }
+
+    for (auto projectile = m_projetiles.begin() ; projectile != m_projetiles.end() ; )
+    {
+        projectile->update(player, dt);
+
+        if(projectile->isDead())
+        {
+            std::cout << "bye bye" << std::endl;
+            projectile = m_projetiles.erase(projectile);
+        }
+        else
+        {
+            projectile++;
+        }
+    }
     onUpdate(world, player, dt);
 }
 
@@ -39,6 +54,10 @@ void Zone::draw()
     for (auto& entity : m_entities)
     {
         entity->draw();
+    }
+    for(auto& projectile : m_projetiles)
+    {
+        projectile.draw();
     }
     onDraw();
 }

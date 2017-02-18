@@ -30,6 +30,8 @@ enum class Texture_ID
     Zone_River,
     Zone_Desert,
 
+    Proj_Stinger,
+
     GUI_Exit_Button,
 
     World_Map,

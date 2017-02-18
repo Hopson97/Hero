@@ -27,7 +27,7 @@ class Projectile
         int m_damage;
         int m_speed;
 
-        bool m_isDead;
+        bool m_isDead = false;
 
 };
 

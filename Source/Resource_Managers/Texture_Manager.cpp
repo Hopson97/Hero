@@ -20,12 +20,16 @@ Texture_Manager::Texture_Manager()
     registerResource(Texture_ID::Entity_Slime,      path + "Slime.png");
     registerResource(Texture_ID::Entity_Bee,        path + "Bee.png");
 
+
     registerResource(Texture_ID::Zone_Village,      path + "Zone_1.png");
     registerResource(Texture_ID::Zone_Forest,       path + "Zone_Forest.png");
     registerResource(Texture_ID::Zone_Beach,        path + "Zone_Beach.png");
     //registerResource(Texture_ID::Zone_Mountians,    path + ".png");
     //registerResource(Texture_ID::Zone_River,        path + ".png");
     //registerResource(Texture_ID::Zone_Deser,        path + ".png");
+
+
+    registerResource(Texture_ID::Proj_Stinger, path + "Stinger.png");
 
 
 

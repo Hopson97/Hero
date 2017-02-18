@@ -7,9 +7,13 @@
 #include "../Component/CDamagedBySword.h"
 #include "../Component/CDamagePlayer.h"
 
+#include "../../Util/General_Maths.h"
 #include "../../Util/Random.h"
 #include "../../Resource_Managers/Resource_Holder.h"
 #include "../../Display.h"
+
+#include "../Player.h"
+#include "../Zone/Zone.h"
 
 Bee::Bee()
 :   Enemy (getResources().getTexture(Texture_ID::Entity_Bee),
@@ -45,6 +49,26 @@ Bee::Bee()
 
     m_hitSound.setBuffer(getResources().getSound(Sound_ID::Dmg_Bee));
 }
+
+void Bee::onUpdate(Zone& zone, Player& player, float dt)
+{
+    Enemy::onUpdate(zone, player, dt);
+
+    if(Maths::getDistance(getPosition(), player.getPosition()) <= 400 &&
+       m_projectileTimer.getElapsedTime().asSeconds() > 3)
+    {
+        std::cout << "adding an entity" << std::endl;
+        zone.addProjectile(sf::Vector2f{getPosition().x,
+                                        getPosition().y + getSprite().getLocalBounds().height / 2},
+                           player.getPosition(),
+                           sf::Vector2f{ 25, 25},
+                           getResources().getTexture(Texture_ID::Proj_Stinger),
+                           5,
+                           400);
+        m_projectileTimer.restart().asSeconds();
+    }
+}
+
 
 Bee::~Bee()
 {
