@@ -11,16 +11,18 @@ namespace Display
 
         void checkForClose(const sf::Event& e)
         {
-            if (e.type == sf::Event::Closed)
+            if (e.is<sf::Event::Closed>())
             {
                 window.close();
+
             }
         }
     }
 
     void init(const std::string& name)
     {
-        window.create({WIDTH, HEIGHT},
+        
+        window.create(sf::VideoMode{{WIDTH, HEIGHT}},
                        name,
                        sf::Style::Close);
     }
@@ -47,11 +49,10 @@ namespace Display
 
     void pollEvents(State::State_Base& gameState)
     {
-        sf::Event e;
-        while (window.pollEvent(e))
+        while (auto e = window.pollEvent())
         {
-            gameState.input(e);
-            checkForClose(e);
+            gameState.input(*e);
+            checkForClose(*e);
         }
     }
 

@@ -27,7 +27,7 @@ Projectile::Projectile(const sf::Vector2f& origin,
 
     if (m_velocity.x < 0)
     {
-        m_sprite.setScale(-1, 1);
+        m_sprite.setScale({-1, 1});
     }
 }
 

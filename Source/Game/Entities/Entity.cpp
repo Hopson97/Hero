@@ -21,7 +21,8 @@ Entity::Entity(const sf::Texture& texture,
     if (center)
     {
         auto rect = m_sprite.getLocalBounds();
-        m_sprite.setOrigin(rect.left + rect.width / 2.0f, m_sprite.getOrigin().y);
+        m_sprite.setOrigin(
+            {rect.position.x + rect.size.x / 2.0f, m_sprite.getOrigin().y});
     }
 }
 
@@ -37,10 +38,10 @@ void Entity::update(Zone& zone, Player& player, float dt)
     else
     {
         m_deathState -= 200 * dt;
-        m_sprite.setFillColor({(sf::Uint8)m_deathState,
-                               (sf::Uint8)m_deathState,
-                               (sf::Uint8)m_deathState,
-                               (sf::Uint8)m_deathState});
+        m_sprite.setFillColor({(uint8_t)m_deathState,
+                               (uint8_t)m_deathState,
+                               (uint8_t)m_deathState,
+                               (uint8_t)m_deathState});
 
         if (m_deathState < 50)
         {
@@ -94,7 +95,7 @@ const sf::Vector2f& Entity::getPosition     ()  const   { return m_position;    
 
 void Entity::flip(int scaleFactor)
 {
-    m_sprite.setScale(scaleFactor, 1);
+    m_sprite.setScale({(float)scaleFactor, 1});
 }
 
 

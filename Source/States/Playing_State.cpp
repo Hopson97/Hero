@@ -71,7 +71,7 @@ namespace State
             m_player.getPosition().y <= 200)
         {
             m_notice.setString("Press space to interact!");
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
             {
                 m_playerState = Player_State::Zone_Switch;
                 m_mapGUI.resetBool();

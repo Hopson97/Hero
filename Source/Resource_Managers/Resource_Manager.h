@@ -22,10 +22,19 @@ class Resource_Manager
         void registerResource(Enum key, const std::string& filename)
         {
             Resource res;
-            if (!res.loadFromFile(filename))
-            {
-                throw std::runtime_error ("Could load resource: " + filename + "!");
+            if constexpr (std::is_same_v<Resource, sf::Font>) {
+                if (!res.openFromFile(filename)) {
+                    throw std::runtime_error(
+                        "Could not load resource: " + filename + "!");
+                }
             }
+            else {
+                if (!res.loadFromFile(filename)) {
+                    throw std::runtime_error(
+                        "Could not load resource: " + filename + "!");
+                }
+            }
+
             m_resources.insert(std::make_pair(key, res));
         }
 

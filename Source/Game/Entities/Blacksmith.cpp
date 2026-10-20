@@ -12,9 +12,9 @@ Blacksmith::Blacksmith()
 {
     for (int i = 0 ; i <= 2 ; i++)
     {
-        m_animation.addFrame({i * 100, 0, 100, 100}, 0.3);
+        m_animation.addFrame({{i * 100, 0}, {100, 100}}, 0.3);
     }
-    m_animation.addFrame({100, 0, 100, 100}, 0.3);
+    m_animation.addFrame({{100, 0}, {100, 100}}, 0.3);
     setTextureRect(m_animation.getFrame());
 }
 

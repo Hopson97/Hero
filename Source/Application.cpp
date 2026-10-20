@@ -37,7 +37,7 @@ Application::Application()
     Display ::init      ("Hero - V0.1");
     Random  ::init      ();
 
-    m_music.setLoop(true);
+    m_music.setLooping(true);
     m_music.openFromFile("Res/Music/cs8b.ogg");
     m_music.setVolume(10);
     m_music.play();

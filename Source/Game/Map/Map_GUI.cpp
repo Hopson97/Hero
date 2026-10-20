@@ -68,7 +68,7 @@ void Map_GUI::update(const Player& player, Game_Notice& notice)
         {
             if ((player.getLevel().getLevel() >= zone.getLevelReq()))
             {
-                if ((sf::Mouse::isButtonPressed(sf::Mouse::Left)))
+                if ((sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)))
                     m_selector.moveTo(zone);
             }
             else

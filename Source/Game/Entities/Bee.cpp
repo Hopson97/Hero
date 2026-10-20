@@ -22,7 +22,8 @@ Bee::Bee()
            5,        //Health
           {1, 1,      //Coin drop
            1, 1},    //Exp drop
-           m_animation, m_damagedAnimation) //Exp drop
+           m_animation, m_damagedAnimation) ,//Exp drop
+    m_hitSound(getResources().getSound(Sound_ID::Dmg_Bee))
 {
     addComponent(std::make_unique<Component::CFollow_Player_AI> (*this, 25, 200, 400));
     addComponent(std::make_unique<Component::CDamaged_By_Sword> (*this, 0.5));
@@ -30,24 +31,22 @@ Bee::Bee()
 
     for (int i = 0 ; i < 3 ; i++)
     {
-        m_animation.addFrame({i * 50, 0, 50, 50}, 0.1);
+        m_animation.addFrame({{i * 50, 0}, {50, 50}}, 0.1);
     }
     for (int i = 2 ; i > 0 ; i--)
     {
-        m_animation.addFrame({i * 50, 0, 50, 50}, 0.1);
+        m_animation.addFrame({{i * 50, 0}, {50, 50}}, 0.1);
     }
     setTextureRect(m_animation.getFrame());
 
     for (int i = 0 ; i < 3 ; i++)
     {
-        m_damagedAnimation.addFrame({i * 50, 50, 50, 50}, 0.1);
+        m_damagedAnimation.addFrame({{i * 50, 50}, {50, 50}}, 0.1);
     }
     for (int i = 2 ; i > 0 ; i--)
     {
-        m_damagedAnimation.addFrame({i * 50, 50, 50, 50}, 0.1);
+        m_damagedAnimation.addFrame({{i * 50, 50}, {50, 50}}, 0.1);
     }
-
-    m_hitSound.setBuffer(getResources().getSound(Sound_ID::Dmg_Bee));
 }
 
 void Bee::onUpdate(Zone& zone, Player& player, float dt)
@@ -58,7 +57,7 @@ void Bee::onUpdate(Zone& zone, Player& player, float dt)
        m_projectileTimer.getElapsedTime().asSeconds() > 10)
     {
         zone.addProjectile(sf::Vector2f{getPosition().x,
-                                        getPosition().y + getSprite().getLocalBounds().height / 2},
+                                        getPosition().y + getSprite().getLocalBounds().size.y / 2},
                            player.getPosition(),
                            sf::Vector2f{ 25, 25},
                            getResources().getTexture(Texture_ID::Proj_Stinger),

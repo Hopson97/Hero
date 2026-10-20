@@ -1,9 +1,13 @@
 cmake_minimum_required(VERSION 3.10)
 
 #Set up project
-project(hero VERSION 1.0)
+project(
+    hero 
+    VERSION 1.0
+)
 
-#Set executable
+include("$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
+
 add_executable(${PROJECT_NAME}     
     Source/Game/Stat_Level.cpp
     Source/Game/Health.cpp
@@ -52,29 +56,21 @@ add_executable(${PROJECT_NAME}
     Source/Animation.cpp
 )
 
-#Set C++17
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_23)
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_EXTENSIONS OFF)
 
-#Set flags
 if(MSVC)
+    set(CMAKE_CXX_FLAGS_RELEASE "/O2")
+    set(CMAKE_CXX_FLAGS_RELEASE "/Ox")
   	target_compile_options(${PROJECT_NAME} PRIVATE 
-    	/W4 /WX)
+    	/W4)
 else()
   	target_compile_options(${PROJECT_NAME} PRIVATE 
-		-Wall -Wextra -pedantic)		#Warning flags
+		-Wall -Wextra -pedantic)		
 endif()
 
-#Set module path
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
+find_package(SFML COMPONENTS system audio network window graphics CONFIG REQUIRED)
 
-#Find libraries
-find_package(Threads)
-find_package(SFML REQUIRED audio network graphics window system)
-
-#Finally
-target_link_libraries(${PROJECT_NAME} 
-    Threads::Threads 
-    ${SFML_LIBRARIES} 
-    ${SFML_DEPENDENCIES}
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    sfml-system sfml-audio sfml-network sfml-graphics sfml-window
 )

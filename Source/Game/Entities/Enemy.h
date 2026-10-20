@@ -32,7 +32,6 @@ class Enemy : public Entity
         Animation* m_animation;
         Animation* m_damagedAnimation;
 
-        sf::Sound m_hitSound;
 };
 
 #endif // ENEMY_H_INCLUDED

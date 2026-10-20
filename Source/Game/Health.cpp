@@ -1,6 +1,7 @@
 #include "Health.h"
 
 #include <algorithm>
+#include <SFML/System/Time.hpp>
 
 Health::Health(int max)
 :   m_value     (max)

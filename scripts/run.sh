@@ -2,7 +2,7 @@
 
 if [ "$1" = "release" ]
 then
-    ./bin/release/hero 
+    ./build/release/hero
 else
-    ./bin/debug/hero 
+    ./build/debug/hero
 fi

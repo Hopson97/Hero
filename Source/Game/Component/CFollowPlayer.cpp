@@ -45,7 +45,8 @@ namespace Component
             {
                 if (m_actionTimer.getElapsedTime().asSeconds() > 2.5)
                 {
-                    m_target = {Random::integer(0, Display::WIDTH), Random::integer(180, Display::HEIGHT)};
+                    m_target = {(float)Random::integer(0, Display::WIDTH),
+                                (float)Random::integer(180, Display::HEIGHT)};
                     m_actionTimer.restart();
                 }
 

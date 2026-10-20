@@ -12,17 +12,17 @@ namespace
 }
 
 
-Enemy_Factory::Enemy_Factory()
-{
-
-}
-
-std::unique_ptr<Entity> Enemy_Factory::makeSlime()
-{
-}
-
-std::unique_ptr<Entity> Enemy_Factory::makeBee()
-{
-
-}
+//Enemy_Factory::Enemy_Factory()
+//{
+//
+//}
+//
+//std::unique_ptr<Entity> Enemy_Factory::makeSlime()
+//{
+//}
+//
+//std::unique_ptr<Entity> Enemy_Factory::makeBee()
+//{
+//
+//}
 

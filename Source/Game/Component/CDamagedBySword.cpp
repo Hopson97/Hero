@@ -22,7 +22,7 @@ namespace Component
         if (sword.isSwinging() &&
             m_p_entity->getState() == Entity_State::Walking)
         {
-            if (m_p_entity->getSprite().getGlobalBounds().intersects(sword.getBounds()))
+            if (m_p_entity->getSprite().getGlobalBounds().findIntersection(sword.getBounds()))
             {
                 m_p_entity->hit(player.getDamage());
                 m_p_entity->setState(Entity_State::Damaged);

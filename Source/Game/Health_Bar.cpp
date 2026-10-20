@@ -9,15 +9,14 @@
 
 Health_Bar::Health_Bar(const Health& health, const sf::SoundBuffer& buff)
 :   m_p_health  (&health)
+    , m_hitSound(buff)
 {
-    m_hitSound.setBuffer(buff);
-
     m_sprite.setTexture(&getResources().getTexture(Texture_ID::Hearts));
     m_sprite.setSize   ({440, 44});
 
     for (int i = 10 ; i >= 0 ; i--)
     {
-        m_stages.addFrame({0, i * 22, 220, 22}, 0.5);
+        m_stages.addFrame({{0, i * 22}, {220, 22}}, 0.5);
     }
     m_sprite.setTextureRect(m_stages.getFrame());
 }
@@ -37,7 +36,7 @@ void Health_Bar::update()
         m_popTimer.getElapsedTime().asSeconds() > 0.3)
     {
         m_isPopped = false;
-        m_sprite.setScale(1, 1);
+        m_sprite.setScale({1, 1});
         m_sprite.setFillColor(sf::Color::White);
     }
 }
@@ -55,7 +54,7 @@ void Health_Bar::pop()
         m_popTimer.restart();
         m_isPopped = true;
 
-        m_sprite.setScale(2, 2);
+        m_sprite.setScale({2, 2});
         m_sprite.setFillColor(sf::Color::Yellow);
     }
 }

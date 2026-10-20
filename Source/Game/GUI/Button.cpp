@@ -20,7 +20,7 @@ namespace GUI
 
     void Button::update()
     {
-        if (touchingMouse() && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        if (touchingMouse() && sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
         {
             m_function();
         }
@@ -33,8 +33,9 @@ namespace GUI
 
     bool Button::touchingMouse()
     {
-        return m_sprite.getGlobalBounds().contains(sf::Mouse::getPosition(Display::get()).x,
-                                                   sf::Mouse::getPosition(Display::get()).y);
+        return m_sprite.getGlobalBounds().contains(
+            {(float)sf::Mouse::getPosition(Display::get()).x,
+             (float)sf::Mouse::getPosition(Display::get()).y});
     }
 
 

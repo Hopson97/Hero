@@ -75,7 +75,7 @@ namespace State
                 case Splash_State::Enter:
                     if (m_currAlphaValue > 0)
                     {
-                        m_fadeSprite.setFillColor({0, 0, 0, (sf::Uint8)m_currAlphaValue--});
+                        m_fadeSprite.setFillColor({0, 0, 0, (uint8_t)m_currAlphaValue--});
                     }
                     else
                     {
@@ -92,7 +92,8 @@ namespace State
                 case Splash_State::Exiting:
                     if (m_currAlphaValue < 255)
                     {
-                        m_fadeSprite.setFillColor({0, 0, 0, (sf::Uint8)m_currAlphaValue++});
+                        m_fadeSprite.setFillColor(
+                            {0, 0, 0, (uint8_t)m_currAlphaValue++});
                     }
                     else
                     {

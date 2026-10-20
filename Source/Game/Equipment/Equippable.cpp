@@ -28,8 +28,8 @@ void Equippable::setUp( const sf::Vector2f&          size,
         if (origin == sf::Vector2f{0, 0})
         {
             auto rect = m_sprite.getLocalBounds();
-            m_sprite.setOrigin(rect.left  + rect.width / 2.0f,
-                               m_sprite.getOrigin().y);
+            m_sprite.setOrigin(
+                {rect.position.x + rect.size.x / 2.0f, m_sprite.getOrigin().y});
         }
         else
         {
@@ -42,11 +42,11 @@ void Equippable::input()
 {
     if (sf::Mouse::getPosition(Display::get()).x > m_sprite.getPosition().x)
     {
-        m_sprite.setScale(1, 1);
+        m_sprite.setScale({1, 1});
     }
     else
     {
-        m_sprite.setScale(-1, 1);
+        m_sprite.setScale({-1, 1});
     }
 }
 

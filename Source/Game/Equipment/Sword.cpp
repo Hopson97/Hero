@@ -9,22 +9,22 @@
 
 Sword::Sword(Equippable& sword)
 :   m_p_sword (&sword)
+    , m_swordSwingSound(getResources().getSound(Sound_ID::Sword1))
 {
     for (int i = 0 ; i <= 1 ; i++)
     {
-        m_swordAnimation.addFrame({i * 50, 0, 50, 50}, 0);
+        m_swordAnimation.addFrame({{i * 50, 0}, {50, 50}}, 0);
     }
     sword.setTextureRect(m_swordAnimation.getFrame(0));
 
     m_slashEffect.setSize({SWORD_SIZE, SWORD_SIZE});
     for (int i = 0 ; i <= 2 ; i++)
     {
-        m_slashAnimation.addFrame({i * 50, 0, 50, 50}, 0.1);
+        m_slashAnimation.addFrame({{i * 50, 0}, {50, 50}}, 0.1);
     }
-    m_slashAnimation.addFrame({0, 0, 50, 50}, 0.15);
+    m_slashAnimation.addFrame({{0, 0}, {50, 50}}, 0.15);
     m_slashEffect.setTextureRect(m_slashAnimation.getFrame(0));
 
-    m_swordSwingSound.setBuffer(getResources().getSound(Sound_ID::Sword1));
 }
 
 void Sword::slash()

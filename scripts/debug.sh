@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sh scripts/build.sh
-gdb ./bin/debug/hro 
+./scripts/build.sh
+gdb ./build/debug/hero  
